@@ -19,3 +19,5 @@ var DeliveryOption = db.define("DeliveryOption", {
     }
   }
 });
+
+module.exports = DeliveryOption;

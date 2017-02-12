@@ -1,6 +1,6 @@
 "use strict";
 
 var Sequelize = require("sequelize");
-var config = require("config");
+var config = require("../config/config");
 
-module.exports = new Sequelize(config.databaseUrl, config.databaseOptions);
+module.exports = new Sequelize(config.databaseUrl, null, null, config.databaseOptions);

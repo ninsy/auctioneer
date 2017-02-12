@@ -29,3 +29,5 @@ var Delivery = db.define("Delivery", {
     }
   }
 });
+
+module.exports = Delivery;

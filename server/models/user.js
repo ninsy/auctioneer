@@ -25,7 +25,7 @@ var User = db.define("User", {
     allowNull: false
   },
   bank_account: {
-    type: Sequelize.String,
+    type: Sequelize.STRING,
     allowNull: false
   },
   firstName: {
@@ -107,5 +107,9 @@ var User = db.define("User", {
 // TODO: rename passHash to simple 'password'
 
 User.beforeUpdate(function(user, options) {
-  user.passHash = user.encryptPassword(user.passHash)
+  if(user.changed("passHash")) {
+    user.passHash = user.encryptPassword(user.passHash);
+  }
 })
+
+module.exports = User;

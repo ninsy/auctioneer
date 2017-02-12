@@ -22,3 +22,5 @@ var AuctionPayment = db.define("AuctionPayment", {
     type: Sequelize.BOOLEAN
   }
 });
+
+module.exports = AuctionPayment;

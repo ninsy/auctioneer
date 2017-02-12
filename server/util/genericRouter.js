@@ -2,7 +2,9 @@ var auth = require("../auth/auth")
 
 module.exports = function(router, ctrl) {
 
-var checkUser = [auth.decodeToken(), auth.getFreshUser()];
+  var checkUser = [auth.decodeToken(), auth.getFreshUser()];
+
+  debugger;
 
   router.param("id", ctrl.params);
 

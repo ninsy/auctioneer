@@ -19,3 +19,5 @@ var Category = db.define("Category", {
     }
   }
 });
+
+module.exports = Category;

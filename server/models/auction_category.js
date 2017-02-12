@@ -19,3 +19,5 @@ var AuctionCategory = db.define("AuctionCategory", {
     }
   }
 });
+
+module.exports = AuctionCategory;

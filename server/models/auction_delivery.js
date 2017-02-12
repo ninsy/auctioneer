@@ -19,3 +19,5 @@ var AuctionDelivery = db.define("AuctionDelivery", {
     }
   }
 });
+
+module.exports = AuctionDelivery;

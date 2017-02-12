@@ -52,3 +52,5 @@ var Auction = db.define("Auction", {
     }
   },
 });
+
+module.exports = Auction;

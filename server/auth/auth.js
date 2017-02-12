@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var config = require('../config/config');
 var checkToken = expressJwt({ secret: config.secrets.jwt });
-// var User = require('../api/user/userModel');
+var User = require('../models/user');
 
 exports.decodeToken = function() {
   return function(req, res, next) {
@@ -15,6 +15,45 @@ exports.decodeToken = function() {
 
 exports.getFreshUser = function() {
   return function(req, res, next) {
-    
+    User.findById(req.user.id).then(function(user) {
+      if(!user) {
+        res.status(401).json({message: "Unauthorized"});
+      } else {
+        req.user = user;
+        next();
+      }
+    }).catch(function(err) {
+      next(err);
+    })
   }
+}
+
+exports.verifyUser = function() {
+  return function(req, res, next) {
+    var email = req.body.email;
+    var password = req.body.password;
+
+    if(!email || !password) {
+      res.status(400).send("You need to provide both email and password");
+      return;
+    }
+    User.findOne({email: email}).then(function(user) {
+      if(!user.authenticate(password)) {
+        res.status(401).json({message: "Wrong password."});
+      } else {
+        req.user = user;
+        next();
+      }
+    }).catch(function(error) {
+      next(err);
+    })
+  }
+}
+
+exports.signToken = function(id) {
+  return jwt.sign(
+    {_id: id},
+    config.secrets.jwt,
+    {expiresInMinutes: config.expireTime}
+  );
 }

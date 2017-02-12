@@ -15,3 +15,5 @@ var Payment = db.define("Payment", {
     unique: true
   }
 });
+
+module.exports = Payment;

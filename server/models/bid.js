@@ -34,3 +34,5 @@ var Bid = db.define("Bid", {
     defaultValue: Sequelize.NOW
   }
 });
+
+module.exports = Bid;

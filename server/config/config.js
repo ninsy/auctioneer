@@ -12,7 +12,7 @@ var config = {
 
 config.env = process.env.NODE_ENV || config.dev;
 
-config.databaseUrl = "localhost:3306/aukcje";
+config.databaseUrl = "mysql://localhost:3306/aukcje";
 config.databaseOptions = {
   dialect: "mysql",
   logging: false,

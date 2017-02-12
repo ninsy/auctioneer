@@ -4,10 +4,12 @@ var bodyParser = require("body-parser");
 var cors = require("cors");
 var fs = require("fs");
 
-var logFile = path.join(NODE_ROOT, "/server/util/logs.txt");
+var config = require(path.join(NODE_ROOT  + "/config/config"));
 
 module.exports = function(app) {
-  var logFileStream = fs.createWriteStream(logFile);
+
+
+  var logFileStream = fs.createWriteStream(config.logFile);
 
   app.use(morgan("dev", {stream: logFileStream}));
   app.use(bodyParser.urlencoded({extended: true}));

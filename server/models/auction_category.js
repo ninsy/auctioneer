@@ -1,23 +1,45 @@
 "use strict";
 
 var Sequelize = require("sequelize");
-var db = require("./db");
 
-var AuctionCategory = db.define("AuctionCategory", {
-  category_id: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Category,
-      key: "id"
-    }
-  },
-  auction_id: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Auction,
-      key: "id"
-    }
-  }
-});
+module.exports = function(sequelize, DataTypes) {
+   var AuctionCategory = sequelize.define("AuctionCategory", {
+         auctionId: Sequelize.INTEGER,
+         categoryId: Sequelize.INTEGER
+   }, {
+      classMethods: {
+          associate: function(models) {
+             AuctionCategory.belongsTo(models.Auction, {
+                foreignKey: "auctionId"
+             });
+             AuctionCategory.belongsTo(models.Category, {
+                foreignKey: "categoryId"
+              })
+          }
+      }
+   });
 
-module.exports = AuctionCategory;
+   return AuctionCategory;
+};
+
+// var AuctionCategory = db.define("AuctionCategory", {
+//   // category_id: {
+//   //   type: Sequelize.INTEGER,
+//   //   references: {
+//   //     model: Category,
+//   //     key: "id"
+//   //   }
+//   // },
+//   // auction_id: {
+//   //   type: Sequelize.INTEGER,
+//   //   references: {
+//   //     model: Auction,
+//   //     key: "id"
+//   //   }
+//   // }
+// });
+//
+
+
+//
+// module.exports = AuctionCategory;

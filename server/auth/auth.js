@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var config = require('../config/config');
 var checkToken = expressJwt({ secret: config.secrets.jwt });
-var User = require('../models/user');
+var User = require('../models/db').User;
 
 exports.decodeToken = function() {
   return function(req, res, next) {
@@ -11,7 +11,7 @@ exports.decodeToken = function() {
     }
     checkToken(req, res, next);
   }
-}
+};
 
 exports.getFreshUser = function() {
   return function(req, res, next) {
@@ -26,7 +26,7 @@ exports.getFreshUser = function() {
       next(err);
     })
   }
-}
+};
 
 exports.verifyUser = function() {
   return function(req, res, next) {
@@ -34,7 +34,7 @@ exports.verifyUser = function() {
     var password = req.body.password;
 
     if(!email || !password) {
-      res.status(400).send("You need to provide both email and password");
+      res.status(400).json({message: "You need to provide both email and password"});
       return;
     }
     User.findOne({email: email}).then(function(user) {
@@ -48,12 +48,12 @@ exports.verifyUser = function() {
       next(err);
     })
   }
-}
+};
 
 exports.signToken = function(id) {
   return jwt.sign(
     {_id: id},
     config.secrets.jwt,
-    {expiresInMinutes: config.expireTime}
+    {expiresIn: config.expireTime}
   );
-}
+};

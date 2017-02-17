@@ -10,7 +10,7 @@ router.get("/me", checkUser, ctrl.me);
 
 router.route("/")
   .get(ctrl.get)
-  .post(checkUser, ctrl.post);
+  .post(ctrl.post);
 
 router.route("/:id")
   .get(ctrl.getOne)

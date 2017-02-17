@@ -1,4 +1,4 @@
-var Payment = require("../../models/Payment");
+var Payment = require("../../models/payment");
 
 exports.params = function(req, res, next, id) {
 

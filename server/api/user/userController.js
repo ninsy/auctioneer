@@ -49,7 +49,10 @@ exports.put = function(req, res, next) {
 
     user.save().then(function(saved) {
         res.json(saved.toJSON());
-    }).catch(next);
+    }).catch(function(err) {
+        debugger;
+        next();
+    });
 };
 
 exports.post = function(req, res, next) {
@@ -59,7 +62,10 @@ exports.post = function(req, res, next) {
     User.create(req.body).then(function(user) {
         var token = signToken(user._id);
         res.json({token: token});
-    }).catch(next);
+    }).catch(function(err) {
+        debugger;
+        next();
+    });
 };
 
 exports.delete = function(req, res, next) {

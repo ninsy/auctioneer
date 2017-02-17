@@ -46,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
       classMethods: {
         associate: function(models) {
           Auction.belongsTo(models.User, {
-            foreignKey: "id"
+            foreignKey: "author_id"
           })
         }
       }

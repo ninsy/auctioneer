@@ -26,7 +26,8 @@ module.exports = function(sequelize, DataTypes) {
         },
         bankAccount: {
             type: Sequelize.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         firstName: {
             type: Sequelize.STRING,
@@ -87,6 +88,13 @@ module.exports = function(sequelize, DataTypes) {
         hooks: {
             beforeCreate: function(user, options) {
                 user.password = user.encryptPassword(user.password);
+            },
+            beforeUpdate: function (user, options) {
+                console.log("BEFORE UPDATE FIRES");
+                if(user.changed("password")) {
+                    console.log("updates!!!!!11one");
+                    user.password = user.encryptPassword(user.password);
+                }
             }
         },
         instanceMethods: {
@@ -110,15 +118,3 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 };
-
-
-
-// Bid.BelongsTo(User, {
-//     foreignKey: 'author_id'
-// });
-
-
-
-// TODO: rename passHash to simple 'password'
-
-

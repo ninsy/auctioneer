@@ -1,6 +1,9 @@
 "use strict";
 var path = require("path");
 var _ = require("lodash");
+
+require("dotenv").config();
+
 var config = {
   dev: "development",
   prod: "production",
@@ -12,10 +15,6 @@ var config = {
 };
 
 config.env = process.env.NODE_ENV || config.dev;
-
-require("dotenv").config();
-
-console.log(`Pasword: ${process.env}`);
 
 config.databaseName = "aukcje";
 config.databaseOptions = {

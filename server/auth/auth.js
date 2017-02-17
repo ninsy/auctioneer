@@ -7,7 +7,7 @@ var User = require('../models/db').User;
 exports.decodeToken = function() {
   return function(req, res, next) {
     if(req.query && req.query.hasOwnProperty("access_token")) {
-      req.headers.authorization = `Bearer: ${req.query.access_token}`;
+      req.headers.authorization = `Bearer ${req.query.access_token}`;
     }
     checkToken(req, res, next);
   }
@@ -15,6 +15,7 @@ exports.decodeToken = function() {
 
 exports.getFreshUser = function() {
   return function(req, res, next) {
+    debugger;
     User.findById(req.user.id).then(function(user) {
       if(!user) {
         res.status(401).json({message: "Unauthorized"});
@@ -51,8 +52,9 @@ exports.verifyUser = function() {
 };
 
 exports.signToken = function(id) {
+  debugger;
   return jwt.sign(
-    {_id: id},
+    {id: id},
     config.secrets.jwt,
     {expiresIn: config.expireTime}
   );

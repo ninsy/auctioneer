@@ -4,7 +4,7 @@ var Sequelize = require("sequelize");
 var config = require("../config/config");
 var fs = require("fs");
 var path = require("path");
-var sequelize = new Sequelize(config.databaseName, config.databaseOptions.user, "bazadanych123", config.databaseOptions);
+var sequelize = new Sequelize(config.databaseName, config.databaseOptions.user, process.env.DB_PASS, config.databaseOptions);
 
 // TODO: some flag to be run when need to sync
 

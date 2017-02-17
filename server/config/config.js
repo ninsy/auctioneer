@@ -12,15 +12,19 @@ var config = {
 };
 
 config.env = process.env.NODE_ENV || config.dev;
-// config.logFile = path.join(__dirname, )
+
+require("dotenv").config();
+
+console.log(`Pasword: ${process.env}`);
 
 config.databaseName = "aukcje";
 config.databaseOptions = {
   dialect: "mysql",
-  host: "localhost",
-  port: 3306,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  password: process.env.DB_PASS,
+  user: process.env.DB_USER,
   logging: false,
-  user: "root",
   pool: {
     max: 5,
     min: 0,

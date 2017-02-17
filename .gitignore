@@ -1,2 +1,3 @@
 node_modules
 server/util/logFile.txt
+.env

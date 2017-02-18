@@ -14,7 +14,9 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-    Models.Payment.findAndCountAll().then(res.json).catch(next);
+    Models.Payment.findAndCountAll().then(function(payments) {
+        res.json(payments.rows);
+    }).catch(next);
 };
 
 exports.getOne = function(req, res, next) {
@@ -27,15 +29,21 @@ exports.put = function(req, res, next) {
 
     _.merge(payment, update);
 
-    payment.save().then(res.json).catch(next);
+    payment.save().then(function(saved) {
+        res.json(saved);
+    }).catch(next);
 
 };
 
 exports.post = function(req, res, next) {
-    Models.Payment.create(req.body).then(res.json).catch(next);
+    Models.Payment.create(req.body).then(function(newPayment) {
+        res.json(newPayment);
+    }).catch(next);
 };
 
 exports.delete = function(req, res, next) {
-    req.payment.destroy().then(res.json).catch(next);
+    req.payment.destroy().then(function(deletedPayment) {
+        res.json(deletedPayment);
+    }).catch(next);
 
 };

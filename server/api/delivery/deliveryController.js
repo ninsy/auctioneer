@@ -13,7 +13,9 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-    Models.Delivery.findAndCountAll().then(res.json).catch(next);
+    Models.Delivery.findAndCountAll().then(function(delivieries) {
+        res.json(delivieries.rows);
+    }).catch(next);
 };
 
 exports.getOne = function(req, res, next) {
@@ -26,15 +28,21 @@ exports.put = function(req, res, next) {
 
     _.merge(delivery, update);
 
-    delivery.save().then(res.json).catch(next);
+    delivery.save().then(function(savedDelivery) {
+        res.json(savedDelivery);
+    }).catch(next);
 
 };
 
 exports.post = function(req, res, next) {
-    Models.Delivery.create(req.body).then(res.json).catch(next);
+    Models.Delivery.create(req.body).then(function(newDelivery) {
+        res.json(newDelivery);
+    }).catch(next);
 };
 
 exports.delete = function(req, res, next) {
-    req.delivery.destroy().then(res.json).catch(next);
+    req.delivery.destroy().then(function(deletedDelivery) {
+        res.json(deletedDelivery);
+    }).catch(next);
 
 };

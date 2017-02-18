@@ -12,7 +12,9 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-    Models.Bid.findAndCountAll().then(res.json).catch(next);
+    Models.Bid.findAndCountAll().then(function(bids) {
+        res.json(bids.rows);
+    }).catch(next);
 };
 
 exports.getOne = function(req, res, next) {
@@ -20,7 +22,9 @@ exports.getOne = function(req, res, next) {
 };
 
 exports.createBid = function(req, res, next) {
-    Models.Bid.create(req.body).then(res.json).catch(next)
+    Models.Bid.create(req.body).then(function(newBid) {
+        res.json(newBid);
+    }).catch(next)
 };
 
 exports.updateBid = function(req, res, next) {
@@ -36,5 +40,7 @@ exports.updateBid = function(req, res, next) {
 };
 
 exports.delete = function(req, res, next) {
-    req.bid.destroy().then(res.json).catch(next);
+    req.bid.destroy().then(function(deletedBid) {
+        res.json(deletedBid);
+    }).catch(next);
 };

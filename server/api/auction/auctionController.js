@@ -14,7 +14,9 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-    Models.Auction.findAndCountAll().then(res.json).catch(next);
+    Models.Auction.findAndCountAll({}).then(function(auctions) {
+        res.json(auctions.rows);
+    }).catch(next);
 };
 
 exports.getOne = function(req, res, next) {
@@ -38,13 +40,19 @@ exports.put = function(req, res, next) {
 
     _.merge(auction, update);
 
-    auction.save().then(res.json).catch(next);
+    auction.save().then(function(saved) {
+        res.json(saved);
+    }).catch(next);
 };
 
 exports.post = function(req, res, next) {
-    Models.Auction.create(req.body).then(res.json).catch(next)
+    Models.Auction.create(req.body).then(function(newAuction) {
+        res.json(newAuction);
+    }).catch(next)
 };
 
 exports.delete = function(req, res, next) {
-    req.auction.destroy().then(res.json).catch(next);
+    req.auction.destroy().then(function(deletedAuction) {
+        res.json(deletedAuction);
+    }).catch(next);
 };

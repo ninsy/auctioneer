@@ -13,7 +13,9 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-    Models.Category.findAndCountAll().then(res.json).catch(next);
+    Models.Category.findAndCountAll().then(function(categories) {
+        res.json(categories.rows);
+    }).catch(next);
 };
 
 exports.getOne = function(req, res, next) {
@@ -26,13 +28,19 @@ exports.put = function(req, res, next) {
 
     _.merge(category, update);
 
-    category.save().then(res.json).catch(next);
+    category.save().then(function(savedCategory) {
+        res.json(savedCategory);
+    }).catch(next);
 };
 
 exports.post = function(req, res, next) {
-    Models.Category.create(req.body).then(res.json).catch(next);
+    Models.Category.create(req.body).then(function(newCategory) {
+        res.json(newCategory);
+    }).catch(next);
 };
 
 exports.delete = function(req, res, next) {
-    req.category.destroy().then(res.json).catch(next);
+    req.category.destroy().then(function(deletedCategories) {
+        res.json(deletedCategories);
+    }).catch(next);
 };

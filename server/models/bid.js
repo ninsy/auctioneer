@@ -19,8 +19,14 @@ module.exports = function(sequelize, DataTypes) {
           type: Sequelize.DATE,
           defaultValue: Sequelize.NOW
       },
-      authorId: Sequelize.INTEGER,
-      auctionId: Sequelize.INTEGER
+      authorId: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+      },
+      auctionId: {
+          type:Sequelize.INTEGER,
+          allowNull: false
+      }
   }, {
     classMethods: {
       associate: function(models) {
@@ -34,8 +40,20 @@ module.exports = function(sequelize, DataTypes) {
     },
     instanceMethods: {
 
+    },
+    hooks: {
+        beforeCreate: checkIfGreatest,
+        beforeUpdate: checkIfGreatest,
     }
   });
+
+  function checkIfGreatest(bid, options) {
+      debugger;
+      Bid.findAll({}).then(function(rows) {
+         debugger;
+      });
+  }
+
   return Bid;
 };
 

@@ -25,12 +25,10 @@ module.exports = function(sequelize, DataTypes) {
               isUrl: true
           }
       },
-      finished: {
-          type: Sequelize.BOOLEAN
-      },
       name: {
           type: Sequelize.STRING,
           allowNull: false,
+          unique: true,
           validate: {
               len: [2,30]
           }
@@ -42,6 +40,8 @@ module.exports = function(sequelize, DataTypes) {
               len: [2,300]
           }
       },
+      finished: Sequelize.BOOLEAN,
+      author_id: Sequelize.INTEGER
   },{
       classMethods: {
         associate: function(models) {
@@ -56,12 +56,3 @@ module.exports = function(sequelize, DataTypes) {
 
 };
 
-
-
-
-// Auction.hasOne(User, {
-//    foreignKey: 'author_id'
-// });
-
-
-// module.exports = Auction;

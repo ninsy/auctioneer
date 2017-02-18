@@ -5,8 +5,6 @@ var auth = require("../../auth/auth");
 var checkUser = [auth.decodeToken(), auth.getFreshUser() ];
 
 router.param("id", ctrl.params);
-router.get("/me", checkUser, ctrl.me);
-
 
 router.route("/")
   .get(ctrl.get)
@@ -15,7 +13,11 @@ router.route("/")
 router.route("/:id")
   .get(ctrl.getOne)
   .put(checkUser, ctrl.put)
-  .delete(checkUser, ctrl.delete)
+  .delete(checkUser, ctrl.delete);
+
+
+router.get("/me", checkUser, ctrl.me);
+router.get("/:id/auctions", checkUser, ctrl.auctions);
 
 
 module.exports = router;

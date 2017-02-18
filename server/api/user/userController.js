@@ -10,14 +10,12 @@ exports.params = function(req, res, next, id) {
     })
         .then(function(user) {
             if (!user) {
-                next(new Error('No user with that id'));
+                next({status: 404, message: `User with id [${id}] doesn't exist`});
             } else {
                 req.user = user;
                 next();
             }
-        }, function(err) {
-            next(err);
-        });
+        }).catch(next);
 };
 
 exports.get = function(req, res, next) {
@@ -31,14 +29,16 @@ exports.get = function(req, res, next) {
             res.json(users.rows.map(function(user){
                 return user.toJSON();
             }));
-        }, function(err){
-            next(err);
-        });
+        }).catch(next);
 };
 
 exports.getOne = function(req, res, next) {
     var user = req.user.toJSON();
     res.json(user.toJSON());
+};
+
+exports.auctions = function(req, res, next) {
+
 };
 
 exports.put = function(req, res, next) {
@@ -49,23 +49,14 @@ exports.put = function(req, res, next) {
 
     user.save().then(function(saved) {
         res.json(saved.toJSON());
-    }).catch(function(err) {
-        debugger;
-        next();
-    });
+    }).catch(next);
 };
 
 exports.post = function(req, res, next) {
-
-    // TODO: check unique / validation errors
-    console.log(req.body);
     User.create(req.body).then(function(user) {
         var token = signToken(user._id);
         res.json({token: token});
-    }).catch(function(err) {
-        debugger;
-        next();
-    });
+    }).catch(next);
 };
 
 exports.delete = function(req, res, next) {

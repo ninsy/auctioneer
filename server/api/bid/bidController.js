@@ -12,11 +12,11 @@ exports.getOne = function(req, res, next) {
 
 };
 
-exports.put = function(req, res, next) {
+exports.createBid = function(req, res, next) {
 
 };
 
-exports.post = function(req, res, next) {
+exports.updateBid = function(req, res, next) {
 
 };
 

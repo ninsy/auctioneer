@@ -12,12 +12,12 @@ module.exports = function(sequelize, DataTypes) {
       },
       started: {
           type: Sequelize.DATE,
-          allowNull: false
+          defaultValue:Sequelize.NOW
       },
       finishes: {
           // TODO: validate that it is greater than started
           type: Sequelize.DATE,
-          allowNull: false
+          allowNull: false,
       },
       imageUrl: {
           type: Sequelize.STRING,
@@ -40,7 +40,10 @@ module.exports = function(sequelize, DataTypes) {
               len: [2,300]
           }
       },
-      finished: Sequelize.BOOLEAN,
+      finished: {
+          type:Sequelize.BOOLEAN,
+          defaultValue: false
+      },
       author_id: Sequelize.INTEGER
   },{
       classMethods: {
@@ -49,8 +52,18 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: "author_id"
           })
         }
+      },
+      hooks: {
+          beforeUpdate: verifyDates,
+          beforeCreate: verifyDates
       }
   });
+
+  function verifyDates(auction, options) {
+      if(auction.started > auction.finishes) {
+          return Sequelize.promise.reject({message: `Auction cannot finish before its creation time`})
+      }
+  }
 
   return Auction;
 

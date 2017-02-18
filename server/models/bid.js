@@ -1,6 +1,8 @@
 "use strict";
 
 var Sequelize = require("sequelize");
+var Auction = require("./db").Auction;
+
 
 module.exports = function(sequelize, DataTypes) {
   var Bid = sequelize.define("Bid", {
@@ -49,9 +51,29 @@ module.exports = function(sequelize, DataTypes) {
 
   function checkIfGreatest(bid, options) {
       debugger;
-      Bid.findAll({}).then(function(rows) {
+      Bid.findAll({
+          where: {
+              auctionId: bid.actionId
+          }
+      }).then(function(rows) {
          debugger;
+         
       });
+  }
+
+  function checkIfAuctionLasts(bid, options) {
+      Auction.findById(bid.auctionId, {}).then(function(auction) {
+          debugger;
+          var finishedAuctionNotif = "Cannot make bid to auction - it has already finished";
+          if(auction.finished) {
+              return Sequelize.promise.reject({message: finishedAuctionNotif});
+          } else if(auction.finishes <= Date.now()) {
+              auction.finished = true;
+              return auction.save().then(function(savedAuction) {
+                  return Sequelize.promise.reject({message: finishedAuctionNotif});
+              })
+          }
+      }).catch(Sequelize.promise.reject)
   }
 
   return Bid;

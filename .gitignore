@@ -4,3 +4,4 @@ server/util/logFile.txt
 ./.idea
 server/config/keys
 .idea
+.idea/workspace.xml

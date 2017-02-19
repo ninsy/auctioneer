@@ -1,11 +1,12 @@
 var google = require('googleapis');
 var config = require("../../config/config");
 
+
 var jwtClient = new google.auth.JWT(
-    config.googleCredentials.email,
-    config.googleCredentials.keyFile,
+    config.gApi.client_email,
     null,
-    config.googleCredentials.scopes,
+    config.gApi.private_key,
+    config.gApi.scopes,
     null
 ), drive;
 

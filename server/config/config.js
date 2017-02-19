@@ -1,5 +1,4 @@
 "use strict";
-var path = require("path");
 var _ = require("lodash");
 
 require("dotenv").config();
@@ -11,15 +10,19 @@ var config = {
   expireTime: 24 * 60 * 10,
   secrets: {
     jwt: process.env.JWT || "secret123"
-  },
-  googleCredentials: {
-    email: process.env.GAPI_EMAIL,
-    scopes: ["https://www.googleapis.com/auth/drive"],
-    keyFile: path.join(appRoot, "server/config/keys/gapi_key.pem")
   }
 };
 
 config.env = process.env.NODE_ENV || config.dev;
+
+if(config.env === config.dev) {
+    config.gApi = require("./keys/gapi.json");
+} else {
+  // TODO: check if appropriate env variable is present, then assign them to gApi object
+  // TODO:    example: config.gApi.client_email = process.env.GAPI_MAIL
+}
+
+config.gApi.scopes = ["https://www.googleapis.com/auth/drive"];
 
 config.databaseName = "aukcje";
 config.databaseOptions = {

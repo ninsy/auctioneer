@@ -17,18 +17,38 @@ jwtClient.authorize(function(err, tokens) {
     drive = google.drive({version: 'v3', auth: jwtClient});
 });
 
-exports.uploadFile = function() {
-
+exports.uploadFile = function(file) {
+    return new Promise(function(fulfill, reject) {
+        requestUpload(file, function(err, fileInfo, message) {
+            if(err) {
+                reject(err);
+            } else {
+                fulfill(`https://www.googleapis.com/drive/v3/files/${fileInfo.id}?alt=media`);
+            }
+        })
+    })
 };
 
-exports.downloadFile = function() {
+exports.downloadFile = function(fileUrl) {
+    var fileId = fileUrl.match(/files\/(.+)\?/)[1];
+    return new Promise(function(fulfill, reject) {
+         fulfill(requestDownload(fileId));
+    });
+};
 
+function requestUpload(file, cb) {
+    drive.files.create({
+        resource: {
+            name: file.originalname,
+            mimeType: file.mimetype
+        },
+        media: {
+            mimeType: file.mimetype,
+            body: file.buffer
+        }
+    }, cb);
 }
 
-function requestUpload(file) {
-
-}
-
-function requestDownload(url) {
-
+function requestDownload(fileId) {
+    return drive.files.get({fileId: fileId, alt: "media"});
 }

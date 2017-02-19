@@ -61,7 +61,7 @@ module.exports = function(sequelize, DataTypes) {
 
   function verifyDates(auction, options) {
       if(auction.started > auction.finishes) {
-          return Sequelize.promise.reject({message: `Auction cannot finish before its creation time`})
+          return Sequelize.Promise.reject({message: `Auction cannot finish before its creation time`})
       }
   }
 

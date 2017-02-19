@@ -90,9 +90,10 @@ module.exports = function(sequelize, DataTypes) {
                 user.password = user.encryptPassword(user.password);
             },
             beforeUpdate: function (user, options) {
-                console.log("BEFORE UPDATE FIRES");
+                if(user.changed("email")) {
+                    return Sequelize.Promise.reject({status: 400, message: `User email is an immutable property`});
+                }
                 if(user.changed("password")) {
-                    console.log("updates!!!!!11one");
                     user.password = user.encryptPassword(user.password);
                 }
             }

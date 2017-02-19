@@ -31,7 +31,8 @@ exports.uploadFile = function(file) {
 };
 
 exports.downloadFile = function(fileUrl) {
-    var fileId = fileUrl.match(/files\/(.+)\?/)[1];
+    var fileId = fileUrl.match(/files\/(.+)/)[1];
+
     return new Promise(function(fulfill, reject) {
          fulfill(requestDownload(fileId));
     });

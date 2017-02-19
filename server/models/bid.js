@@ -44,8 +44,8 @@ module.exports = function(sequelize, DataTypes) {
 
     },
     hooks: {
-        beforeCreate: checkIfGreatest,
-        beforeUpdate: checkIfGreatest,
+        beforeCreate: [checkIfAuctionLasts, checkIfGreatest],
+        beforeUpdate: [checkIfAuctionLasts, checkIfGreatest],
     }
   });
 
@@ -66,57 +66,15 @@ module.exports = function(sequelize, DataTypes) {
           debugger;
           var finishedAuctionNotif = "Cannot make bid to auction - it has already finished";
           if(auction.finished) {
-              return Sequelize.promise.reject({message: finishedAuctionNotif});
+              return Sequelize.Promise.reject({message: finishedAuctionNotif});
           } else if(auction.finishes <= Date.now()) {
               auction.finished = true;
               return auction.save().then(function(savedAuction) {
-                  return Sequelize.promise.reject({message: finishedAuctionNotif});
+                  return Sequelize.Promise.reject({message: finishedAuctionNotif});
               })
           }
-      }).catch(Sequelize.promise.reject)
+      }).catch(Sequelize.Promise.reject)
   }
 
   return Bid;
 };
-
-// var Bid = db.define("Bid", {
-//   id: {
-//     type: Sequelize.INTEGER,
-//     primaryKey:true,
-//     autoIncrement:true,
-//     unique: true
-//   },
-  // auction_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: Auction,
-  //     key: "id"
-  //   }
-  // },
-  // author_id: {
-  //   type: Sequelize.INTEGER,
-  //   references: {
-  //     model: User,
-  //     key: "id"
-  //   }
-  // },
-//   value: {
-//     // TODO: trigger which checks whterher value is greater than / equal current maximum | buyout
-//     type: Sequelize.INTEGER,
-//     allowNull: false
-//   },
-//   created_at: {
-//     type: Sequelize.DATE,
-//     defaultValue: Sequelize.NOW
-//   }
-// });
-//
-// Auction.hasMany(Bid);
-
-// Auction.hasOne(Bid, {
-//    foreignKey: 'auction_id'
-// });
-
-
-
-// module.exports = Bid;

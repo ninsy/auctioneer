@@ -1,11 +1,8 @@
 "use strict";
 var path = require("path");
 var _ = require("lodash");
-var root = require("globals").root;
 
 require("dotenv").config();
-
-console.log(root);
 
 var config = {
   dev: "development",
@@ -18,7 +15,7 @@ var config = {
   googleCredentials: {
     email: process.env.GAPI_EMAIL,
     scopes: ["https://www.googleapis.com/auth/drive"],
-    keyFile: path.join(root, "./keys/gapi_key.pem")
+    keyFile: path.join(appRoot, "server/config/keys/gapi_key.pem")
   }
 };
 

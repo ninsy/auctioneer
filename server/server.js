@@ -11,8 +11,6 @@ require("./middleware/middleware")(app);
 app.use("/api", api);
 app.use("/auth", auth);
 
-global.root = path.resolve(__dirname);
-
 app.use(function(err, req, res, next) {
   console.error(err);
   if(err.errors) {

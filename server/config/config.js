@@ -1,8 +1,11 @@
 "use strict";
 var path = require("path");
 var _ = require("lodash");
+var root = require("globals").root;
 
 require("dotenv").config();
+
+console.log(root);
 
 var config = {
   dev: "development",

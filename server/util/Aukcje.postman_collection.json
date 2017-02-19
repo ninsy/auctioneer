@@ -1,0 +1,331 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Aukcje",
+		"_postman_id": "55e0d518-6e09-6110-28dd-3a18f7db70b5",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User creation",
+			"request": {
+				"url": "localhost:3000/api/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "marek@wp.pl",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "bankAccount",
+							"value": "12 12 12",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Marek",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "Krychowiak",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "tel",
+							"value": "516322384",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "houseNumber",
+							"value": "8",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "street",
+							"value": "Nowa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "city",
+							"value": "Moskwa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "postalCode",
+							"value": "22-222",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Craete new user"
+			},
+			"response": []
+		},
+		{
+			"name": "User signin",
+			"request": {
+				"url": "localhost:3000/auth/signin",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "marek@wp.pl",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "123451",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "User update",
+			"request": {
+				"url": "localhost:3000/api/users/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "marek@wp.pl",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "bankAccount",
+							"value": "123123",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "Wojtrek",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "tel",
+							"value": "142423",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "street",
+							"value": "Nowa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "houseNumber",
+							"value": "43",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "city",
+							"value": "Moskwa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "postalCode",
+							"value": "43-433",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Marek",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update user",
+			"request": {
+				"url": "localhost:3000/api/users/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0ODczNDQxMjYsImV4cCI6MTQ4NzM1ODUyNn0.n3V3cOYSGu69x9YM_ktDHj7tKGVwhKB0v54GeqoAQAc",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "w11@wp.pl",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "bankAccount",
+							"value": "123123",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "Wojtrek",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "tel",
+							"value": "142423",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "street",
+							"value": "Nowa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "houseNumber",
+							"value": "43",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "city",
+							"value": "Moskwa",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "postalCode",
+							"value": "43-433",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Marek",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get all auctions",
+			"request": {
+				"url": "localhost:3000/api/auctions",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NDM5MTE5LCJleHAiOjE0ODc0NTM1MTl9.qyvrT-7nwwXh4nmu0uutK9I3RsMqI6m00FaDPlpKlXs",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create new auction",
+			"request": {
+				"url": "localhost:3000/api/auctions",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NDM5MTE5LCJleHAiOjE0ODc0NTM1MTl9.qyvrT-7nwwXh4nmu0uutK9I3RsMqI6m00FaDPlpKlXs",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

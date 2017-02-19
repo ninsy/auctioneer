@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Aukcje",
-		"_postman_id": "55e0d518-6e09-6110-28dd-3a18f7db70b5",
+		"_postman_id": "7eeee454-42ca-98c0-d82e-2417e1cc054a",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -111,7 +111,7 @@
 						},
 						{
 							"key": "password",
-							"value": "123451",
+							"value": "12345",
 							"type": "text",
 							"enabled": true
 						}
@@ -203,92 +203,6 @@
 			"response": []
 		},
 		{
-			"name": "Update user",
-			"request": {
-				"url": "localhost:3000/api/users/1",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0ODczNDQxMjYsImV4cCI6MTQ4NzM1ODUyNn0.n3V3cOYSGu69x9YM_ktDHj7tKGVwhKB0v54GeqoAQAc",
-						"description": ""
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "w11@wp.pl",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "password",
-							"value": "12345",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "bankAccount",
-							"value": "123123",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "lastName",
-							"value": "Wojtrek",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "tel",
-							"value": "142423",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "street",
-							"value": "Nowa",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "houseNumber",
-							"value": "43",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "city",
-							"value": "Moskwa",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "postalCode",
-							"value": "43-433",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "firstName",
-							"value": "Marek",
-							"type": "text",
-							"enabled": true
-						}
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
 			"name": "Get all auctions",
 			"request": {
 				"url": "localhost:3000/api/auctions",
@@ -300,7 +214,10 @@
 						"description": ""
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -319,6 +236,37 @@
 					{
 						"key": "Content-Type",
 						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file ( auction item photo ) ",
+			"request": {
+				"url": "http://localhost:3000/api/files",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Download file",
+			"request": {
+				"url": "http://localhost:3000/api/files?fileUrl=https://www.googleapis.com/drive/v3/files/0B10zAL1xanraeE94WWhkRzdpaFE&alt=media",
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NTQ0MzE3LCJleHAiOjE0ODc1NTg3MTd9.yvQEixpYAJ29J7agagCP1BD0uTxCDLQ8T4AG1NIFr88",
 						"description": ""
 					}
 				],

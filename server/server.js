@@ -4,11 +4,14 @@ var app = express();
 var api = require("./api/api");
 var config = require("./config/config");
 var auth = require("./auth/routes");
+var path = require("path");
 
 require("./middleware/middleware")(app);
 
 app.use("/api", api);
 app.use("/auth", auth);
+
+global.root = path.resolve(__dirname);
 
 app.use(function(err, req, res, next) {
   console.error(err);

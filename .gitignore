@@ -1,3 +1,5 @@
 node_modules
 server/util/logFile.txt
 .env
+.idea
+server/config/keys

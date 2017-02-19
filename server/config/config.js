@@ -11,6 +11,11 @@ var config = {
   expireTime: 24 * 60 * 10,
   secrets: {
     jwt: process.env.JWT || "secret123"
+  },
+  googleCredentials: {
+    email: process.env.GAPI_EMAIL,
+    scopes: ["https://www.googleapis.com/auth/drive"],
+    keyFile: path.join(root, "./keys/gapi_key.pem")
   }
 };
 

@@ -14,8 +14,9 @@ var config = {
 };
 
 config.env = process.env.NODE_ENV || config.dev;
+config.gApi = {}
 
-if(config.env === config.dev) {
+if(config.env ===  config.dev) {
     config.gApi = require("./keys/gapi.json");
 } else {
   config.gApi.private_key = process.env.GAPI_PKEY;

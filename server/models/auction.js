@@ -54,7 +54,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
       hooks: {
-          beforeUpdate: verifyDates,
+          beforeUpdate: checkIfBoundsChanged,
           beforeCreate: verifyDates
       }
   });

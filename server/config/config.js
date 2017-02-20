@@ -14,7 +14,7 @@ var config = {
 };
 
 config.env = process.env.NODE_ENV || config.dev;
-config.gApi = {}
+config.gApi = {};
 
 if(config.env ===  config.dev) {
     config.gApi = require("./keys/gapi.json");

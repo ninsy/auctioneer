@@ -3,6 +3,6 @@
 var config = {
   logging: false,
   databaseOptions: {
-    logging: false;
+    logging: false
   }
-}
+};

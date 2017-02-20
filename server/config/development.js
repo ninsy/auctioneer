@@ -5,4 +5,4 @@ var config = {
   databaseOptions: {
     logging: console.log
   }
-}
+};

@@ -60,7 +60,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   function checkIfBoundsChanged(auction, options) {
-      if(auction.changed("finishes") || auction.changed("started")) {
+        if(auction.changed("finishes") || auction.changed("started")) {
           return Sequelize.Promise.reject({status: 400, message: "Both start and finish auction dates are immutable properties"});
       }
   }

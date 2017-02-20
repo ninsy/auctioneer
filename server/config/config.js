@@ -25,7 +25,7 @@ if(config.env ===  config.dev) {
 
 config.gApi.scopes = ["https://www.googleapis.com/auth/drive"];
 
-config.databaseName = "aukcje";
+config.databaseName = process.env.DB_NAME;
 config.databaseOptions = {
   dialect: "mysql",
   host: process.env.DB_HOST,

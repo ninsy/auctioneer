@@ -4,8 +4,8 @@ var config = require("../../config/config");
 
 var jwtClient = new google.auth.JWT(
     config.gApi.client_email,
-    process.env.env === config.prod ? config.gApi.private_key : null,
-    process.env.env === config.dev ? config.gApi.private_key : null,
+    null,
+    config.gApi.private_key,
     config.gApi.scopes,
     null
 ), drive;

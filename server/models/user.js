@@ -104,6 +104,8 @@ module.exports = function(sequelize, DataTypes) {
                 return this.dataValues;
             },
             authenticate: function(plainTextPass) {
+                console.log(`ctx: ${this}, mail" ${this.email}`);
+                console.log(`Plaintxt: ${plainTextPass}, hash: ${this.password}, fn: ${bcrypt.compareSync(plainTextPass, this.password)}`);
                 return bcrypt.compareSync(plainTextPass, this.password);
             },
             encryptPassword: function(plainTextPass) {

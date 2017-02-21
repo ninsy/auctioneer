@@ -43,7 +43,7 @@ exports.verifyUser = function() {
 
       var user = users[0];
 
-      if(!user.authenticate(password)) {
+      if(!user || !user.authenticate(password)) {
         res.status(401).json({message: "Wrong password."});
       } else {
         req.user = user;

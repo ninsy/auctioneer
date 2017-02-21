@@ -1,6 +1,7 @@
 var google = require('googleapis');
 var config = require("../../config/config");
 
+console.log(`KEY: ${config.gApi.private_key}`);
 
 var jwtClient = new google.auth.JWT(
     config.gApi.client_email,

@@ -15,6 +15,7 @@ exports.decodeToken = function() {
 
 exports.getFreshUser = function() {
   return function(req, res, next) {
+    console.log(`USER ID: ${req.user.id}`);
     User.findById(req.user.id).then(function(user) {
       if(!user) {
         res.status(401).json({message: "Unauthorized"});
@@ -37,6 +38,9 @@ exports.verifyUser = function() {
       res.status(400).json({message: "You need to provide both email and password"});
       return;
     }
+
+    console.log(`Passed email: ${req.body.email}`);
+
     User.findOne({email: email}).then(function(user) {
       if(!user.authenticate(password)) {
         res.status(401).json({message: "Wrong password."});

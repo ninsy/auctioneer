@@ -39,7 +39,7 @@ exports.verifyUser = function() {
       return;
     }
 
-    console.log(`Passed email: ${req.body.email}`);
+    console.log(`Passed email: ${req.body.email}, val:${email}`);
 
     User.findOne({email: email}).then(function(user) {
       if(!user.authenticate(password)) {

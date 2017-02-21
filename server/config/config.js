@@ -34,7 +34,7 @@ config.databaseOptions = {
   logging: false,
   pool: {
     max: 3,
-    min: 0,
+    min: 1,
     idle: 10000
   }
 };

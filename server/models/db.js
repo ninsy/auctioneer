@@ -30,7 +30,7 @@ db.sequelize = sequelize;
 db.Sequelize =  Sequelize;
 
 setInterval(function () {
-    db.query('SELECT 1');
+    db.sequelize.query('SELECT 1');
 }, 5000);
 
 

@@ -100,6 +100,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         instanceMethods: {
             toJSON: function() {
+                delete this.dataValues.password;
                 return this.dataValues;
             },
             authenticate: function(plainTextPass) {

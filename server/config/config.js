@@ -33,9 +33,9 @@ config.databaseOptions = {
   user: process.env.DB_USER,
   logging: false,
   pool: {
-    max: 3,
+    max: 4,
     min: 1,
-    idle: 10000
+    idle: 5000
   }
 };
 

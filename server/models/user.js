@@ -4,7 +4,7 @@ var bcrypt = require("bcryptjs");
 var Sequelize = require("sequelize");
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define("User", {
+    var User = sequelize.define("User", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey:true,
@@ -98,27 +98,30 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        instanceMethods: {
-            toJSON: function() {
-                delete this.dataValues.password;
-                return this.dataValues;
-            },
-            authenticate: function(plainTextPass) {
-                console.log(`ctx: ${this}, mail" ${this.dataValues.email}`);
-                console.log(`Plaintxt: ${plainTextPass}, hash: ${this.password}, fn: ${bcrypt.compareSync(plainTextPass, this.dataValues.password)}`);
-                return bcrypt.compareSync(plainTextPass, this.password);
-            },
-            encryptPassword: function(plainTextPass) {
-                if(!plainTextPass) {
-                    return "";
-                } else {
-                    var salt = bcrypt.genSaltSync(10);
-                    return bcrypt.hashSync(plainTextPass, salt);
-                }
-            }
-        },
         classMethods: {
 
         }
     });
+
+    User.prototype.toJSON = function () {
+        delete this.dataValues.password;
+        return this.dataValues;
+    };
+
+    User.prototype.authenticate = function(plainTextPass) {
+        console.log(`ctx: ${this}, mail" ${this.dataValues.email}`);
+        console.log(`Plaintxt: ${plainTextPass}, hash: ${this.password}, fn: ${bcrypt.compareSync(plainTextPass, this.dataValues.password)}`);
+        return bcrypt.compareSync(plainTextPass, this.password);
+    };
+
+    User.prototype.encryptPassword = function(plainTextPass) {
+        if(!plainTextPass) {
+            return "";
+        } else {
+            var salt = bcrypt.genSaltSync(10);
+            return bcrypt.hashSync(plainTextPass, salt);
+        }
+    };
+
+    return User;
 };

@@ -42,6 +42,9 @@ exports.verifyUser = function() {
     console.log(`Passed email: ${req.body.email}, val:${email}`);
 
     User.findOne({email: email}).then(function(user) {
+
+      console.log(`Fetched user: ${user}`);
+
       if(!user.authenticate(password)) {
         res.status(401).json({message: "Wrong password."});
       } else {

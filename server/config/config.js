@@ -23,8 +23,6 @@ if(config.env ===  config.dev) {
   config.gApi.client_email = process.env.GAPI_EMAIL;
 }
 
-console.log(config.gApi.private_key);
-
 config.gApi.scopes = ["https://www.googleapis.com/auth/drive"];
 
 config.databaseName = process.env.DB_NAME;

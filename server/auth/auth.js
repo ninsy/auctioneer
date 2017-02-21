@@ -43,7 +43,7 @@ exports.verifyUser = function() {
 
     User.findAll({where: {email: email}}).then(function(user) {
 
-      console.log(`Fetched user: ${user.dataValues.email}`);
+      console.log(`Fetched user: ${user.email}`);
 
       if(!user.authenticate(password)) {
         res.status(401).json({message: "Wrong password."});

@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
     }, {
       classMethods: {
           associate: function(models) {
-              Category.belongsTo(models.Auction, {through: models.AuctionCategory})
+              Category.belongsToMany(models.Auction, {through: models.AuctionCategory})
           }
       }
     });

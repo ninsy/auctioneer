@@ -1,21 +1,22 @@
 var Models = require("../../models/db");
 
 exports.getPossibleChoices = function (req, res, next) {
-    Models.DeliveryOption.findAndCountAll({}).then(function(options) {
+    Models.PaymentOption.findAndCountAll({}).then(function(options) {
         res.json(options.rows);
     }).catch(next);
 };
 
 exports.authorChoice = function (req, res, next) {
-    Models.Delivery.create().then(function() {
+    Models.Payment.create().then(function() {
 
     }).catch(next);
 };
 
 exports.buyerChoice = function (req, res, next) {
-    Models.BuyerChosenDelivery.create(req.body).then(function(choice) {
+    Models.BuyerChosenPayment.create(req.body).then(function(choice) {
+        // Models.Auction - set deliveryId to returned obj
         Models.Auction.findById(req.params.auctionId).then(function(auction) {
-            auction.buyerDeliveryId = choice.id;
+            auction.buyerPaymentId = choice.id;
             auction.save().then(function(saved) {
                 res.json({
                     message: "Successfully made choice",
@@ -26,3 +27,6 @@ exports.buyerChoice = function (req, res, next) {
         });
     }).catch(next);
 };
+
+
+

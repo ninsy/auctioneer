@@ -45,5 +45,4 @@ exports.delete = function(req, res, next) {
     req.payment.destroy().then(function(deletedPayment) {
         res.json(deletedPayment);
     }).catch(next);
-
 };

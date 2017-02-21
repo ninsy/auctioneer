@@ -11,29 +11,9 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement:true,
             unique: true
         },
-        name: {
-            type: Sequelize.STRING,
-            unique: true
-        },
-        auctionId: {
-            type: Sequelize.INTEGER,
-            allowNull: false
-        },
-        choosenPaymentType: {
-            allowNull: false,
-            type: Sequelize.INTEGER
+        status: {
+            type: Sequelize.BOOLEAN,
         }
-    },{
-        classMethods: {
-            associate: function(models) {
-                Payment.belongsTo(models.Auction,{
-                    foreignKey: "auctionId"
-                });
-                Payment.belongsTo(models.PaymentOption, {
-                    foreignKey: "choosenPaymentType"
-                })
-            }
-        },
     });
     return Payment;
 };

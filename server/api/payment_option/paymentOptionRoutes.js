@@ -8,5 +8,5 @@ router.get("/", ctrl.getPossibleChoices);
 router.post("/:auctionId/author", checkUser, ctrl.authorChoice);
 router.post("/:auctionId/buyer",checkUser,ctrl.buyerChoice);
 
-
 module.exports = router;
+

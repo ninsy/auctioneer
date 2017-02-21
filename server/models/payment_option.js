@@ -4,7 +4,7 @@ var Sequelize = require("sequelize");
 var models = require("./db");
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define("PaymentOption", {
+    var PaymentOption = sequelize.define("PaymentOption", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey:true,
@@ -28,5 +28,6 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
     });
+    return PaymentOption;
 };
 

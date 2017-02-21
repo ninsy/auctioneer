@@ -47,14 +47,16 @@ module.exports = function(sequelize, DataTypes) {
       },
       authorId: Sequelize.INTEGER,
       paymentId: Sequelize.INTEGER,
-      deliveryId: Sequelize.INTEGER
+      deliveryId: Sequelize.INTEGER,
+      buyerDeliveryId: Sequelize.INTEGER,
+      buyerPaymentId: Sequelize.INTEGER
   },{
       classMethods: {
         associate: function(models) {
           Auction.belongsTo(models.User, {
             foreignKey: "authorId"
           });
-          Auction.belongsTo(models.Category, {through: models.AuctionCategory});
+          Auction.belongsToMany(models.Category, {through: models.AuctionCategory});
           Auction.belongsTo(models.Delivery, {foreignKey: "deliveryId"});
           Auction.belongsTo(models.Payment, {foreignKey: "paymentId"});
         }

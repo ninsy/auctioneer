@@ -16,15 +16,10 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         sent: Sequelize.BOOLEAN,
-        estimatedDelivery: Sequelize.DATE,
-        chosenDeliveryType: Sequelize.INTEGER
+        estimatedDelivery: Sequelize.DATE
 }, {
       classMethods: {
-        associate: function(models) {
-          Delivery.belongsTo(models.DeliveryOption, {
-            foreignKey: "chosenDeliveryType"
-          })
-        }
+
       },
       instanceMethods: {
 

@@ -13,6 +13,6 @@ router.route("/")
 router.route("/:id")
   .get(ctrl.getOne)
   .put(checkUser, ctrl.put)
-  .delete(checkUser, ctrl.delete)
+  .delete(checkUser, ctrl.delete);
 
 module.exports = router;

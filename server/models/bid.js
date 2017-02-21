@@ -63,7 +63,6 @@ module.exports = function(sequelize, DataTypes) {
 
   function checkIfAuctionLasts(bid, options) {
       Auction.findById(bid.auctionId, {}).then(function(auction) {
-          debugger;
           var finishedAuctionNotif = "Cannot make bid to auction - it has already finished";
           if(auction.finished) {
               return Sequelize.Promise.reject({message: finishedAuctionNotif});

@@ -29,6 +29,10 @@ Object.keys(db).forEach(function(modelName) {
 db.sequelize = sequelize;
 db.Sequelize =  Sequelize;
 
+setInterval(function () {
+    db.query('SELECT 1');
+}, 5000);
+
 
 // db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
 //     .then(function(){

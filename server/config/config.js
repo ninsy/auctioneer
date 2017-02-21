@@ -35,7 +35,7 @@ config.databaseOptions = {
   pool: {
     max: 4,
     min: 1,
-    idle: 5000
+    idle: 10000
   }
 };
 

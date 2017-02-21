@@ -30,11 +30,11 @@ db.sequelize = sequelize;
 db.Sequelize =  Sequelize;
 
 
-db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
-    .then(function(){
-        return db.sequelize.sync();
-    })
-    .then(function(){
-        return db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
-    });
+// db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
+//     .then(function(){
+//         return db.sequelize.sync();
+//     })
+//     .then(function(){
+//         return db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
+//     });
 module.exports = db;

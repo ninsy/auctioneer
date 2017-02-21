@@ -45,7 +45,9 @@ module.exports = function(sequelize, DataTypes) {
           type:Sequelize.BOOLEAN,
           defaultValue: false
       },
-      authorId: Sequelize.INTEGER
+      authorId: Sequelize.INTEGER,
+      paymentId: Sequelize.INTEGER,
+      deliveryId: Sequelize.INTEGER
   },{
       classMethods: {
         associate: function(models) {
@@ -53,8 +55,8 @@ module.exports = function(sequelize, DataTypes) {
             foreignKey: "authorId"
           });
           Auction.belongsTo(models.Category, {through: models.AuctionCategory});
-          Auction.belongsTo(models.Delivery, {through: models.AuctionDelivery});
-          Auction.belongsTo(models.Payment, {through: models.AuctionPayment});
+          Auction.belongsTo(models.Delivery, {foreignKey: "deliveryId"});
+          Auction.belongsTo(models.Payment, {foreignKey: "paymentId"});
         }
       },
       hooks: {

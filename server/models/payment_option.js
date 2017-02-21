@@ -4,7 +4,7 @@ var Sequelize = require("sequelize");
 var models = require("./db");
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define("Payment", {
+    return sequelize.define("PaymentOption", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey:true,
@@ -15,15 +15,15 @@ module.exports = function(sequelize, DataTypes) {
             type: Sequelize.STRING,
             unique: true
         },
-        deliveryId: {
+        paymentId: {
             type: Sequelize.INTEGER,
             allowNull: false
         }
     },{
         classMethods: {
             associate: function(models) {
-                Payment.belongsTo(models.Auction,{
-                    foreignKey: "auctionId"
+                PaymentOption.belongsTo(models.Payment,{
+                    foreignKey: "paymentId"
                 });
             }
         },

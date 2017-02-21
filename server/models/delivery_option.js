@@ -1,9 +1,10 @@
 "use strict";
 
 var Sequelize = require("sequelize");
+var models = require("./db");
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define("DeliveryOption", {
+    var DeliveryOption = sequelize.define("DeliveryOption", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey:true,
@@ -16,25 +17,20 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [2,20]
             }
+        },
+        deliveryId: {
+            type: Sequelize.INTEGER,
+            allowNull: false
         }
+    },{
+        classMethods: {
+            associate: function(models) {
+                DeliveryOption.belongsTo(models.Delivery,{
+                    foreignKey: "deliveryId"
+                });
+            }
+        },
     });
+    return DeliveryOption;
 };
 
-
-// var DeliveryOption = db.define("DeliveryOption", {
-//   id: {
-//     type: Sequelize.INTEGER,
-//     primaryKey:true,
-//     autoIncrement:true,
-//     unique: true
-//   },
-//   name: {
-//     type: Sequelize.STRING,
-//     unique: true,
-//     validate: {
-//       len: [2,20]
-//     }
-//   }
-// });
-//
-// module.exports = DeliveryOption;

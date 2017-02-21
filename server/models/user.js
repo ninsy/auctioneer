@@ -103,18 +103,18 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    User.prototype.toJSON = function () {
+    User.Instance.prototype.toJSON = function () {
         delete this.dataValues.password;
         return this.dataValues;
     };
 
-    User.prototype.authenticate = function(plainTextPass) {
+    User.Instance.prototype.authenticate = function(plainTextPass) {
         console.log(`ctx: ${this}, mail" ${this.dataValues.email}`);
         console.log(`Plaintxt: ${plainTextPass}, hash: ${this.password}, fn: ${bcrypt.compareSync(plainTextPass, this.dataValues.password)}`);
         return bcrypt.compareSync(plainTextPass, this.password);
     };
 
-    User.prototype.encryptPassword = function(plainTextPass) {
+    User.Instance.prototype.encryptPassword = function(plainTextPass) {
         if(!plainTextPass) {
             return "";
         } else {

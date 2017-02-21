@@ -22,6 +22,13 @@ exports.getOne = function(req, res, next) {
     res.json(req.category);
 };
 
+exports.categoryAuctions = function(req, res, next) {
+    Models.Auction.findAndCountAll({
+
+    })
+
+};
+
 exports.put = function(req, res, next) {
     var category = req.category;
     var update = req.body;

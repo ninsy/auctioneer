@@ -2,7 +2,17 @@ var Models = require("../../models/db");
 var _ = require("lodash");
 
 exports.params = function(req, res, next, id) {
-    Models.Auction.findById(id)
+    Models.Auction.findById(id, {
+        include: [
+            {
+                model: Models.Bid,
+                where: {
+                    auctionId: id
+                },
+                order: "value DESC"
+            }
+        ]
+    })
         .then(function(auction) {
             if (!auction) {
                 next({status: 404, message: `Auction with id [${id}] doesn't exist`});

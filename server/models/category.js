@@ -1,9 +1,10 @@
 "use strict";
 
 var Sequelize = require("sequelize");
+var models = require("./db");
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define("Category", {
+    var Category = sequelize.define("Category", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey:true,
@@ -19,9 +20,12 @@ module.exports = function(sequelize, DataTypes) {
         }
     }, {
       classMethods: {
-
+          associate: function(models) {
+              Category.belongsTo(models.Auction, {through: models.AuctionCategory})
+          }
       }
     });
+    return Category;
 };
 
 // var Category = db.define("Category", {

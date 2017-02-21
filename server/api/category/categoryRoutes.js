@@ -14,5 +14,7 @@ router.route("/:id")
   .get(ctrl.getOne)
   .put(checkUser, ctrl.put)
   .delete(checkUser, ctrl.delete)
-  
+
+router.get("/:id/auctions", ctrl.categoryAuctions);
+
 module.exports = router;

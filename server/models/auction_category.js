@@ -3,21 +3,7 @@
 var Sequelize = require("sequelize");
 
 module.exports = function(sequelize, DataTypes) {
-   var AuctionCategory = sequelize.define("AuctionCategory", {
-         auctionId: Sequelize.INTEGER,
-         categoryId: Sequelize.INTEGER
-   }, {
-      classMethods: {
-          associate: function(models) {
-             AuctionCategory.belongsTo(models.Auction, {
-                foreignKey: "auctionId"
-             });
-             AuctionCategory.belongsTo(models.Category, {
-                foreignKey: "categoryId"
-              })
-          }
-      }
-   });
+   var AuctionCategory = sequelize.define("AuctionCategory", {});
 
    return AuctionCategory;
 };

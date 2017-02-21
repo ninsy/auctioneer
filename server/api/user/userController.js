@@ -1,9 +1,9 @@
-var User = require("../../models/db").User;
+var Models = require("../../models/db");
 var _ = require('lodash');
 var signToken = require('../../auth/auth').signToken;
 
 exports.params = function(req, res, next, id) {
-    User.findById(id, {
+    Models.User.findById(id, {
         attributes: {
             exclude: ['password']
         }
@@ -19,7 +19,7 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-    User.findAndCountAll({
+    Models.User.findAndCountAll({
         attributes: {
             exclude: ['password']
         }
@@ -37,7 +37,36 @@ exports.getOne = function(req, res, next) {
     res.json(user);
 };
 
-exports.auctions = function(req, res, next) {
+exports.biddingAuctions = function(req, res, next) {
+    Models.Auction.findAndCountAll({
+        attributes: ["id", "value", "createdAt", "authorId", "auctionId"],
+        include: [
+            {
+                model: Models.Bid,
+                where: {
+                    auctionId: Models.sequelize.col("Auction.id"),
+                    order: "value DESC"
+                }
+            }
+        ],
+        where: {
+            authorId: req.user.id,
+            finished: false
+        }
+    }).then(function (auctions) {
+        res.json(auctions.rows)
+    }).catch(next)
+};
+
+// TODO: order by highest bid
+exports.postedAuctions = function(req, res, next) {
+    Models.Auction.findAndCountAll({
+        where: {
+            authorId: req.user.id
+        }
+    }).then(function (auctions) {
+        res.json(auctions.rows)
+    }).catch(next)
 
 };
 
@@ -53,7 +82,7 @@ exports.put = function(req, res, next) {
 };
 
 exports.post = function(req, res, next) {
-    User.create(req.body).then(function(user) {
+    Models.User.create(req.body).then(function(user) {
         var token = signToken(user._id);
         res.json({token: token});
     }).catch(next);

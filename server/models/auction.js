@@ -2,6 +2,7 @@
 
 var Sequelize = require("sequelize");
 var moment = require("moment");
+var models = require("./db");
 
 module.exports = function(sequelize, DataTypes) {
   var Auction = sequelize.define("Auction", {
@@ -44,13 +45,16 @@ module.exports = function(sequelize, DataTypes) {
           type:Sequelize.BOOLEAN,
           defaultValue: false
       },
-      author_id: Sequelize.INTEGER
+      authorId: Sequelize.INTEGER
   },{
       classMethods: {
         associate: function(models) {
           Auction.belongsTo(models.User, {
-            foreignKey: "author_id"
-          })
+            foreignKey: "authorId"
+          });
+          Auction.belongsTo(models.Category, {through: models.AuctionCategory});
+          Auction.belongsTo(models.Delivery, {through: models.AuctionDelivery});
+          Auction.belongsTo(models.Payment, {through: models.AuctionPayment});
         }
       },
       hooks: {

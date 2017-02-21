@@ -15,13 +15,9 @@ module.exports = function(sequelize, DataTypes) {
             type: Sequelize.STRING,
             unique: true
         },
-        auctionId: {
+        deliveryId: {
             type: Sequelize.INTEGER,
             allowNull: false
-        },
-        choosenPaymentType: {
-            allowNull: false,
-            type: Sequelize.INTEGER
         }
     },{
         classMethods: {
@@ -29,9 +25,6 @@ module.exports = function(sequelize, DataTypes) {
                 Payment.belongsTo(models.Auction,{
                     foreignKey: "auctionId"
                 });
-                Payment.belongsTo(models.PaymentOption, {
-                    foreignKey: "choosenPaymentType"
-                })
             }
         },
     });

@@ -18,12 +18,12 @@ config.gApi = {};
 
 if(config.env ===  config.dev) {
     config.gApi = require("./keys/gapi.json");
-    console.log(JSON.stringify(config.gApi));
 } else {
-  //config.gApi.private_key = process.env.GAPI_PKEY;
-  //config.gApi.client_email = process.env.GAPI_EMAIL;
-  config.gApi = JSON.parse(process.env.GAPI_PKEY);
+  config.gApi.private_key = process.env.GAPI_PKEY;
+  config.gApi.client_email = process.env.GAPI_EMAIL;
 }
+
+console.log(config.gApi.private_key);
 
 config.gApi.scopes = ["https://www.googleapis.com/auth/drive"];
 

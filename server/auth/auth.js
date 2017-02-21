@@ -52,7 +52,7 @@ exports.verifyUser = function() {
         next();
       }
     }).catch(function(error) {
-      next(err);
+      next(error);
     })
   }
 };

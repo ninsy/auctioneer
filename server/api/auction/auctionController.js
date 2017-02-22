@@ -39,7 +39,7 @@ exports.get = function(req, res, next) {
     if(req.query) {
 
         searchObj.where = {};
-        searchObj.includes =  [];
+        searchObj.include =  [];
         searchObj.order = [];
 
         if(req.query.nameSearch) {
@@ -47,15 +47,14 @@ exports.get = function(req, res, next) {
                 $like: `%${req.query.nameSearch}%`
             };
         }
-        if(req.query.categorySerach) {
-            searchObj.includes.push({
-                model: Models.AuctionCategory,
+        if(req.query.categorySearch) {
+            searchObj.include.push({
+                model: Models.Category,
                 where: {
-                    categoryId: {
+                    id: {
                         $in: req.query.categorySearch.split(",")
                     }
-                },
-                required: false
+                }
             });
         }
         if(req.query.orderBy) {

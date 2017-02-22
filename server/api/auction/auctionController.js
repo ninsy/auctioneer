@@ -7,13 +7,16 @@ var paymentCtrl =  require("../payment/paymentController"),
     deliveryOptionCtrl = require("../delivery_option/deliveryOptionController");
 
 exports.params = function(req, res, next, id) {
+    id = parseInt(id);
     Models.Auction.findById(id, {
         include: [
             {
                 model: Models.Bid,
+                as: "bids",
                 where: {
-                    auctionId: id
+                    auctionId: id,
                 },
+                required: false,
                 order: "value DESC"
             }
         ]

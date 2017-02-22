@@ -1,6 +1,7 @@
 var Models = require("../../models/db");
 
 exports.params = function(req, res, next, id) {
+    id = parseInt(id)
     Models.Category.findById(id)
         .then(function(category) {
             if (!category) {

@@ -31,7 +31,7 @@ config.databaseOptions = {
   host: process.env.DB_HOST,
   password: process.env.DB_PASS,
   user: process.env.DB_USER,
-  logging: false,
+  logging: console.log,
   pool: {
     max: 4,
     min: 1,

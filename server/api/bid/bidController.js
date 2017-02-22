@@ -1,8 +1,14 @@
 var Models = require("../../models/db");
+var _ = require("lodash");
 
 exports.params = function(req, res, next, id) {
-    Models.Bid.findById(id, {}).then(function(bid) {
-        if (!user) {
+    id = parseInt(id)
+    Models.Bid.findById(id, {
+        where: {
+            auctionId: parseInt(req.params.auctionId)
+        }
+    }).then(function(bid) {
+        if (!bid) {
             next({status: 404, message: `Bid with id [${id}] doesn't exist`});
         } else {
             req.bid = bid;
@@ -12,7 +18,11 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-    Models.Bid.findAndCountAll().then(function(bids) {
+    Models.Bid.findAndCountAll({
+        where: {
+            auctionId: parseInt(req.params.auctionId)
+        }
+    }).then(function(bids) {
         res.json(bids.rows);
     }).catch(next);
 };
@@ -22,6 +32,8 @@ exports.getOne = function(req, res, next) {
 };
 
 exports.createBid = function(req, res, next) {
+    req.body.auctionId = req.params.auctionId;
+    req.body.authorId = req.user.id;
     Models.Bid.create(req.body).then(function(newBid) {
         res.json(newBid);
     }).catch(next)

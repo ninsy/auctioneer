@@ -3,6 +3,7 @@ var _ = require('lodash');
 var signToken = require('../../auth/auth').signToken;
 
 exports.params = function(req, res, next, id) {
+    id = parseInt(id)
     Models.User.findById(id, {
         attributes: {
             exclude: ['password']

@@ -6,7 +6,7 @@ var checkUser = [auth.decodeToken(), auth.getFreshUser()];
 
 router.param("id", ctrl.params);
 
-router.route("/:auctionId")
+router.route("/")
   .get(ctrl.get)
   .post(checkUser, ctrl.createBid);
 

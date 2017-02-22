@@ -18,10 +18,6 @@ module.exports = function(sequelize, DataTypes) {
                 len: [2,20]
             }
         }
-        // deliveryId: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: false
-        // }
     },{
         classMethods: {
             // associate: function(models) {

@@ -12,16 +12,12 @@ module.exports = function(sequelize, DataTypes) {
         authorId: {
             type: Sequelize.INTEGER,
             allowNull: false
-        },
-        chosenPayment: {
-            type: Sequelize.INTEGER,
-            allowNull: false
         }
     },{
         classMethods: {
             associate: function(models) {
-                UserChosenPayment.belongsTo(models.PaymentOption, {
-                    foreignKey: "chosenPayment"
+                UserChosenPayment.hasMany(models.PaymentOption, {
+                    foreignKey: "chosenPaymentId"
                 });
                 UserChosenPayment.belongsTo(models.User, {
                     foreignKey: "authorId"

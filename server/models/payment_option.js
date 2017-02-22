@@ -13,12 +13,11 @@ module.exports = function(sequelize, DataTypes) {
         },
         name: {
             type: Sequelize.STRING,
-            unique: true
+            unique: true,
+            validate: {
+                len: [2,20]
+            }
         }
-        // paymentId: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: false
-        // }
     },{
         classMethods: {
             // associate: function(models) {

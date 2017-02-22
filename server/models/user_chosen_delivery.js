@@ -12,16 +12,12 @@ module.exports = function(sequelize, DataTypes) {
         authorId: {
             type: Sequelize.INTEGER,
             allowNull: false
-        },
-        chosenDelivery: {
-            type: Sequelize.INTEGER,
-            allowNull: false
         }
     },{
         classMethods: {
             associate: function(models) {
-                UserChosenDelivery.belongsTo(models.DeliveryOption, {
-                    foreignKey: "chosenDelivery"
+                UserChosenDelivery.hasMany(models.DeliveryOption, {
+                    foreignKey: "chosenDeliveryId"
                 });
                 UserChosenDelivery.belongsTo(models.User, {
                     foreignKey: "authorId"

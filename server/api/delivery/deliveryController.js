@@ -35,8 +35,23 @@ exports.put = function(req, res, next) {
 };
 
 exports.post = function(req, res, next) {
-    Models.Delivery.create(req.body).then(function(newDelivery) {
-        res.json(newDelivery);
+
+    Promise.all([
+        Models.Auction.findById(req.params.auctionId),
+        Models.Delivery.create(req.body)
+    ]).then(function (values) {
+
+        var auction = values[0],
+            delivery = values[1];
+
+        auction.deliveryId = payment.id;
+        auction.save().then(function (saved) {
+            res.json({
+                delivery: delivery,
+                auction: saved
+            })
+        })
+
     }).catch(next);
 };
 
@@ -45,4 +60,26 @@ exports.delete = function(req, res, next) {
         res.json(deletedDelivery);
     }).catch(next);
 
+};
+
+exports.create = function(delivery, auctionId) {
+    return Promise.all([
+        Models.Auction.findById(auctionId),
+        Models.Delivery.create(delivery)
+    ]).then(function (values) {
+
+        var auction = values[0],
+            delivery = values[1];
+
+        auction.deliveryId = payment.id;
+        return auction.save().then(function (saved) {
+            return {
+                delivery: delivery,
+                auction: saved
+            }
+        })
+
+    }).catch(function(err) {
+        return new Error(err);
+    });
 };

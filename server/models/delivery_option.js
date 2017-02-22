@@ -17,18 +17,18 @@ module.exports = function(sequelize, DataTypes) {
             validate: {
                 len: [2,20]
             }
-        },
-        deliveryId: {
-            type: Sequelize.INTEGER,
-            allowNull: false
         }
+        // deliveryId: {
+        //     type: Sequelize.INTEGER,
+        //     allowNull: false
+        // }
     },{
         classMethods: {
-            associate: function(models) {
-                DeliveryOption.belongsTo(models.Delivery,{
-                    foreignKey: "deliveryId"
-                });
-            }
+            // associate: function(models) {
+            //     DeliveryOption.belongsTo(models.Delivery,{
+            //         foreignKey: "deliveryId"
+            //     });
+            // }
         },
     });
     return DeliveryOption;

@@ -6,26 +6,35 @@ exports.getPossibleChoices = function (req, res, next) {
     }).catch(next);
 };
 
-exports.authorChoice = function (req, res, next) {
-    Models.Payment.create().then(function() {
-
+exports.createChoice = function(req, res, next) {
+    Models.PaymentOption.create(req.body).then(function (option) {
+        res.json(option);
     }).catch(next);
 };
 
-exports.buyerChoice = function (req, res, next) {
-    Models.BuyerChosenPayment.create(req.body).then(function(choice) {
-        // Models.Auction - set deliveryId to returned obj
-        Models.Auction.findById(req.params.auctionId).then(function(auction) {
-            auction.buyerPaymentId = choice.id;
-            auction.save().then(function(saved) {
-                res.json({
-                    message: "Successfully made choice",
-                    choice: choice,
-                    auction: saved
-                });
-            });
+exports.makeChoice = function (userId, optionId, auctionId) {
+
+
+    return Models.PaymentOption.findAndCountAll().then(function(options) {
+
+        var idx = options.rows.findIndex(function(option) {
+            return option.id === optionId;
         });
-    }).catch(next);
+
+        if(idx === -1) {
+            return Promise.reject({message: `Payment Option with id ${optionId} doesn't exist`})
+        }
+        var option = options.rows[idx];
+
+        return Models.UserChosenPayment.create({
+            authorId: userId,
+            auctionId: auctionId,
+            chosenPayment: option.id
+        }).then(function(userOption) {
+            return userOption
+        });
+
+    });
 };
 
 

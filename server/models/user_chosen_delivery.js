@@ -4,7 +4,7 @@ var Sequelize = require("sequelize");
 var models = require("./db");
 
 module.exports = function(sequelize, DataTypes) {
-    var BuyerChosenDelivery = sequelize.define("BuyerChosenDelivery", {
+    var UserChosenDelivery = sequelize.define("UserChosenDelivery", {
         auctionId: {
             type: Sequelize.BOOLEAN,
             allowNull: false
@@ -20,16 +20,16 @@ module.exports = function(sequelize, DataTypes) {
     },{
         classMethods: {
             associate: function(models) {
-                BuyerChosenDelivery.belongsTo(models.DeliveryOption, {
+                UserChosenDelivery.belongsTo(models.DeliveryOption, {
                     foreignKey: "chosenDelivery"
                 });
-                BuyerChosenDelivery.belongsTo(models.User, {
+                UserChosenDelivery.belongsTo(models.User, {
                     foreignKey: "authorId"
                 });
             },
 
         },
     });
-    return BuyerChosenDelivery;
+    return UserChosenDelivery;
 };
 

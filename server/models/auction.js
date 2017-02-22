@@ -47,9 +47,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       authorId: Sequelize.INTEGER,
       paymentId: Sequelize.INTEGER,
-      deliveryId: Sequelize.INTEGER,
-      buyerDeliveryId: Sequelize.INTEGER,
-      buyerPaymentId: Sequelize.INTEGER
+      deliveryId: Sequelize.INTEGER
   },{
       classMethods: {
         associate: function(models) {
@@ -76,7 +74,7 @@ module.exports = function(sequelize, DataTypes) {
   function verifyDates(auction, options) {
       var start = moment(auction.started).format("YYYY-MM-DD HH:mm:ss"),
           end = moment(auction.finishes).format("YYYY-MM-DD HH:mm:ss");
-      if(!moment.isValid(start) || !moment.isValid(end)) {
+      if(!moment(start).isValid || !moment(end).isValid) {
           return sequelize.Promise.reject({status: 400, message: `Format date restricted to: "YYYY-MM-DD hh:mm:ss`});
       }
       if(moment.unix(auction.started) > moment.unix(auction.finishes)) {

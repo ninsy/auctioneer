@@ -14,18 +14,18 @@ module.exports = function(sequelize, DataTypes) {
         name: {
             type: Sequelize.STRING,
             unique: true
-        },
-        paymentId: {
-            type: Sequelize.INTEGER,
-            allowNull: false
         }
+        // paymentId: {
+        //     type: Sequelize.INTEGER,
+        //     allowNull: false
+        // }
     },{
         classMethods: {
-            associate: function(models) {
-                PaymentOption.belongsTo(models.Payment,{
-                    foreignKey: "paymentId"
-                });
-            }
+            // associate: function(models) {
+            //     PaymentOption.belongsTo(models.Payment,{
+            //         foreignKey: "paymentId"
+            //     });
+            // }
         },
     });
     return PaymentOption;

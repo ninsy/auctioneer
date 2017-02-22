@@ -57,7 +57,6 @@ module.exports = function(sequelize, DataTypes) {
           Auction.belongsToMany(models.Category, {through: models.AuctionCategory});
           Auction.belongsTo(models.Delivery, {foreignKey: "deliveryId"});
           Auction.belongsTo(models.Payment, {foreignKey: "paymentId"});
-          Auction.hasMany(models.Bid);
         }
       },
       hooks: {

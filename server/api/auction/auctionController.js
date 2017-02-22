@@ -63,6 +63,12 @@ exports.put = function(req, res, next) {
     }).catch(next);
 };
 
+function promisify(fn,id) {
+    return function() {
+        return fn(id);
+    }
+}
+
 exports.post = function(req, res, next) {
     req.body.authorId = req.user.id;
     Models.Auction.create(req.body).then(function(newAuction) {
@@ -72,22 +78,34 @@ exports.post = function(req, res, next) {
             estimatedDelivery: req.body.deliveryDate
         };
 
-        return Promise.all([
-            deliveryCtrl.create(deliveryObj, newAuction.id),
-            paymentCtrl.create({}, newAuction.id),
-            deliveryOptionCtrl.makeChoice(req.user.id, parseInt(req.body.deliveryOption), newAuction.id),
-            paymentOptionCtrl.makeChoice(req.user.id, parseInt(req.body.paymentOption), newAuction.id)
-        ]).then(function(values) {
+        req.body.categoryIds = JSON.parse(req.body.categoryIds);
+        var promiseArr = [];
+        for(let i = 0; i < req.body.categoryIds.length; i++) {
+            promiseArr.push(promisify(newAuction.addCategories), req.body.categoryIds[i]);
+        }
 
-            newAuction.dataValues.deliveryId = values[0].auction.dataValues.deliveryId;
-            newAuction.dataValues.paymentId = values[1].auction.dataValues.paymentId;
+        Promise.all(promiseArr).then(function() {
 
-            res.json(newAuction);
+            return Promise.all([
+                deliveryCtrl.create(deliveryObj, newAuction.id),
+                paymentCtrl.create({}, newAuction.id),
+                deliveryOptionCtrl.makeChoice(req.user.id, parseInt(req.body.deliveryOption), newAuction.id),
+                paymentOptionCtrl.makeChoice(req.user.id, parseInt(req.body.paymentOption), newAuction.id),
+                newAuction.addCategories(req.body.categoryIds)
+            ]).then(function(values) {
 
-        }).catch(function(err) {
+                newAuction.dataValues.deliveryId = values[0].auction.dataValues.deliveryId;
+                newAuction.dataValues.paymentId = values[1].auction.dataValues.paymentId;
 
-            next(err);
+                res.json(newAuction);
+
+            }).catch(function(err) {
+
+                next(err);
+            });
+
         });
+
 
     }).catch(next)
 };

@@ -1,6 +1,11 @@
 var Models = require("../../models/db");
 var _ = require("lodash");
 
+var paymentCtrl =  require("../payment/paymentController"),
+    paymentOptionCtrl = require("../payment_option/paymentOptionController"),
+    deliveryCtrl = require("../delivery/deliveryController"),
+    deliveryOptionCtrl = require("../delivery_option/deliveryOptionController");
+
 exports.params = function(req, res, next, id) {
     Models.Auction.findById(id, {
         include: [
@@ -57,7 +62,27 @@ exports.put = function(req, res, next) {
 
 exports.post = function(req, res, next) {
     Models.Auction.create(req.body).then(function(newAuction) {
-        res.json(newAuction);
+
+        var deliveryObj = {
+            cost: req.body.deliveryCost,
+            estimatedDelivery: req.body.deliveryDate
+        };
+
+        return Promise.all([
+            deliveryCtrl.create(deliveryObj, newAuction.id),
+            paymentCtrl.create({}, newAuction.id),
+            deliveryOptionCtrl.makeChoice(req.user.id, req.body.deliveryOption, newAuction.id),
+            paymentOptionCtrl.makeChoice(req.user.id, req.body.paymentOption, newAuction.id)
+        ]).then(function(values) {
+
+            _.merge(newAuction, [values[0].auction, values[1].auction]);
+            res.json(newAuction);
+
+        }).catch(function(err) {
+
+            next(err);
+        });
+
     }).catch(next)
 };
 

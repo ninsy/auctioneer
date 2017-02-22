@@ -15,7 +15,10 @@ module.exports = function(sequelize, DataTypes) {
             type: Sequelize.FLOAT,
             allowNull: false
         },
-        sent: Sequelize.BOOLEAN,
+        sent: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        },
         estimatedDelivery: Sequelize.DATE
 }, {
       classMethods: {

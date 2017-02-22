@@ -13,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         status: {
             type: Sequelize.BOOLEAN,
+            defaultValue: false
         }
     });
     return Payment;

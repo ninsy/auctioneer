@@ -1,4 +1,4 @@
-var router = require("express").Router();
+var router = require("express").Router({mergeParams: true});
 var ctrl = require("./categoryController");
 var auth = require("../../auth/auth");
 

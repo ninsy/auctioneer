@@ -1,7 +1,6 @@
-var router = require("express").Router();
+var router = require("express").Router({mergeParams: true});
 
 router.use("/users", require("./user/userRoutes"));
-router.use("/bids", require("./bid/bidRoutes"));
 router.use("/categories", require("./category/categoryRoutes"));
 router.use("/deliveries", require("./delivery/deliveryRoutes"));
 router.use("/payments", require("./payment/paymentRoutes"));

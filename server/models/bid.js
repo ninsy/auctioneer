@@ -13,7 +13,6 @@ module.exports = function(sequelize, DataTypes) {
           unique: true
       },
       value: {
-          // TODO: trigger which checks whterher value is greater than / equal current maximum | buyout
           type: Sequelize.INTEGER,
           allowNull: false
       },
@@ -50,15 +49,16 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   function checkIfGreatest(bid, options) {
-      debugger;
       Bid.findAll({
           where: {
-              auctionId: bid.actionId
-          }
+              auctionId: bid.auctionId
+          },
+          order: "value DESC"
       }).then(function(rows) {
-         debugger;
-         
-      });
+          if(rows[0].value >= bid.value) {
+              return Sequelize.Promise.reject({message: "You have to post bid value greatest than current top one."});
+          }
+      }).catch(Sequelize.Promise.reject);
   }
 
   function checkIfAuctionLasts(bid, options) {

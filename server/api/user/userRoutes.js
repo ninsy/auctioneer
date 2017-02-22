@@ -1,4 +1,4 @@
-var router = require("express").Router();
+var router = require("express").Router({mergeParams: true});
 var ctrl = require("./userController");
 var routes = require("../../util/genericRouter");
 var auth = require("../../auth/auth");

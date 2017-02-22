@@ -1,4 +1,4 @@
-var router = require("express").Router();
+var router = require("express").Router({mergeParams: true});
 var ctrl = require("./bidController");
 var auth = require("../../auth/auth");
 
@@ -6,7 +6,7 @@ var checkUser = [auth.decodeToken(), auth.getFreshUser()];
 
 router.param("id", ctrl.params);
 
-router.route("/")
+router.route("/:auctionId")
   .get(ctrl.get)
   .post(checkUser, ctrl.createBid);
 

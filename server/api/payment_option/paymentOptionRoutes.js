@@ -1,4 +1,4 @@
-var router = require("express").Router();
+var router = require("express").Router({mergeParams: true});
 var ctrl = require("./paymentOptionController");
 var auth = require("../../auth/auth");
 

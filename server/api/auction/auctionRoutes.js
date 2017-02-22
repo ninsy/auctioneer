@@ -1,4 +1,4 @@
-var router = require("express").Router();
+var router = require("express").Router({mergeParams: true});
 var ctrl = require("./auctionController");
 var auth = require("../../auth/auth");
 
@@ -11,10 +11,9 @@ router.route("/")
   .post(checkUser, ctrl.post);
 
 router.route("/:id")
+  .get("/bids", require("../bid/bidRoutes"))
   .get(ctrl.getOne)
   .put(checkUser, ctrl.put)
   .delete(checkUser, ctrl.delete);
-
-router.get("/:id/bids", ctrl.bids);
 
 module.exports = router;

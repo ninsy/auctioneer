@@ -1,5 +1,6 @@
 var Models = require("../../models/db");
 var _ = require("lodash");
+var belongsHelper = require("../../util/belongsToManyHelper");
 
 var paymentCtrl =  require("../payment/paymentController"),
     paymentOptionCtrl = require("../payment_option/paymentOptionController"),
@@ -32,7 +33,40 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-    Models.Auction.findAndCountAll({}).then(function(auctions) {
+
+    var searchObj = {};
+
+    if(req.query) {
+
+        searchObj.where = {};
+        searchObj.includes =  [];
+        searchObj.order = [];
+
+        if(req.query.nameSearch) {
+            searchObj.where.name = {
+                $like: `%${req.query.nameSearch}%`
+            };
+        }
+        if(req.query.categorySerach) {
+            searchObj.includes.push({
+                model: Models.AuctionCategory,
+                where: {
+                    categoryId: {
+                        $in: req.query.categorySearch.split(",")
+                    }
+                },
+                required: false
+            });
+        }
+        if(req.query.orderBy) {
+            // Example: localhost:3000/api/auctions?orderBy=finishes desc,authorId asc&categorySerach=1,2,3
+            var sortParams = req.query.orderBy.split(",");
+            for(var i = 0; i < sortParams.length; i++) {
+                searchObj.order.push(sortParams[i].split(' '))
+            }
+        }
+    }
+    Models.Auction.findAndCountAll(searchObj).then(function(auctions) {
         res.json(auctions.rows);
     }).catch(next);
 };

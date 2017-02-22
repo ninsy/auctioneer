@@ -8,272 +8,620 @@
 	},
 	"item": [
 		{
-			"name": "User creation",
-			"request": {
-				"url": "localhost:3000/api/users",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "marek@wp.pl",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "password",
-							"value": "12345",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "bankAccount",
-							"value": "12 12 12",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "firstName",
-							"value": "Marek",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "lastName",
-							"value": "Krychowiak",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "tel",
-							"value": "516322384",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "houseNumber",
-							"value": "8",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "street",
-							"value": "Nowa",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "city",
-							"value": "Moskwa",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "postalCode",
-							"value": "22-222",
-							"type": "text",
-							"enabled": true
-						}
-					]
-				},
-				"description": "Craete new user"
-			},
-			"response": []
-		},
-		{
-			"name": "User signin",
-			"request": {
-				"url": "localhost:3000/auth/signin",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "marek@wp.pl",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "password",
-							"value": "12345",
-							"type": "text",
-							"enabled": true
-						}
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "User update",
-			"request": {
-				"url": "localhost:3000/api/users/1",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "marek@wp.pl",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "password",
-							"value": "12345",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "bankAccount",
-							"value": "123123",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "lastName",
-							"value": "Wojtrek",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "tel",
-							"value": "142423",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "street",
-							"value": "Nowa",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "houseNumber",
-							"value": "43",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "city",
-							"value": "Moskwa",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "postalCode",
-							"value": "43-433",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "firstName",
-							"value": "Marek",
-							"type": "text",
-							"enabled": true
-						}
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Get all auctions",
-			"request": {
-				"url": "localhost:3000/api/auctions",
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NDM5MTE5LCJleHAiOjE0ODc0NTM1MTl9.qyvrT-7nwwXh4nmu0uutK9I3RsMqI6m00FaDPlpKlXs",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Create new auction",
-			"request": {
-				"url": "localhost:3000/api/auctions",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NDM5MTE5LCJleHAiOjE0ODc0NTM1MTl9.qyvrT-7nwwXh4nmu0uutK9I3RsMqI6m00FaDPlpKlXs",
+			"name": "Auctions",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all auctions",
+					"request": {
+						"url": "localhost:3000/api/auctions?orderBy=finishes desc&categorySearch=1&nameSearch=UTU",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NDM5MTE5LCJleHAiOjE0ODc0NTM1MTl9.qyvrT-7nwwXh4nmu0uutK9I3RsMqI6m00FaDPlpKlXs",
+								"description": ""
+							}
+						],
+						"body": {},
 						"description": ""
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Upload file ( auction item photo ) ",
-			"request": {
-				"url": "http://localhost:3000/api/files",
-				"method": "POST",
-				"header": [],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Download file",
-			"request": {
-				"url": "http://localhost:3000/api/files?fileUrl=https://www.googleapis.com/drive/v3/files/0B10zAL1xanraeE94WWhkRzdpaFE&alt=media",
-				"method": "POST",
-				"header": [
-					{
-						"key": "authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NTQ0MzE3LCJleHAiOjE0ODc1NTg3MTd9.yvQEixpYAJ29J7agagCP1BD0uTxCDLQ8T4AG1NIFr88",
+				{
+					"name": "Create new auction",
+					"request": {
+						"url": "localhost:3000/api/auctions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NzM2MjE1LCJleHAiOjE0ODc3NTA2MTV9.xP80K6pKKs4SpVCSpO13KNmJh1kJiIjbegtQSq9rM58",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "finishes",
+									"value": "2020-01-12 15:55",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "name",
+									"value": "FUTURE",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "description",
+									"value": "Desc",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "blablabla",
+									"value": "1111",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "deliveryCost",
+									"value": "250",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "deliveryDate",
+									"value": "2015-12-12 11:11:11",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "deliveryOption",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "paymentOption",
+									"value": "4",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "categoryIds",
+									"value": "[1,2,3]",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
 						"description": ""
-					}
-				],
-				"body": {},
-				"description": ""
-			},
-			"response": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bids",
+			"description": "",
+			"item": [
+				{
+					"name": "Get bids for given auction",
+					"request": {
+						"url": "http://localhost:3000/api/auctions/1/bids",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Make a bid",
+					"request": {
+						"url": "http://localhost:3000/api/auctions/1/bids",
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NzI3OTA2LCJleHAiOjE0ODc3NDIzMDZ9.Sl_irg_CfNrWrIHP6fT1tvw7hsFuPSQbxun66mX855E",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "value",
+									"value": "100",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Rebid",
+					"request": {
+						"url": "http://localhost:3000/api/auctions/1/bids/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NzI3OTA2LCJleHAiOjE0ODc3NDIzMDZ9.Sl_irg_CfNrWrIHP6fT1tvw7hsFuPSQbxun66mX855E",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "value",
+									"value": "100",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"description": "",
+			"item": [
+				{
+					"name": "Get categories",
+					"request": {
+						"url": "http://localhost:3000/api/categories",
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NzI3OTA2LCJleHAiOjE0ODc3NDIzMDZ9.Sl_irg_CfNrWrIHP6fT1tvw7hsFuPSQbxun66mX855E",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create category",
+					"request": {
+						"url": "http://localhost:3000/api/categories",
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NzM2MjE1LCJleHAiOjE0ODc3NTA2MTV9.xP80K6pKKs4SpVCSpO13KNmJh1kJiIjbegtQSq9rM58",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "koks",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deliveries",
+			"description": "",
+			"item": [
+				{
+					"name": "Get delivery Options",
+					"request": {
+						"url": "http://localhost:3000/api/deliveryOptions",
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NzIxNzUxLCJleHAiOjE0ODc3MzYxNTF9.bJ2yT_xaPY-UtcGctcM77bGa2lAsipLXECa3RFz_AaI",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create delivery Option",
+					"request": {
+						"url": "http://localhost:3000/api/deliveryOptions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NzI3MTY2LCJleHAiOjE0ODc3NDE1NjZ9.e7klqvX6q5XAcI1dRdJ9vvzeKsVvKKYjL1ilhFLqGoo",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Pocztex",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Files",
+			"description": "",
+			"item": [
+				{
+					"name": "Upload file ( auction item photo ) ",
+					"request": {
+						"url": "https://projekt-aukcje.herokuapp.com/api/files",
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NTQ0MzE3LCJleHAiOjE0ODc1NTg3MTd9.yvQEixpYAJ29J7agagCP1BD0uTxCDLQ8T4AG1NIFr88",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"enabled": true,
+									"src": "aoraki-mount-cook-mountain-new-zealand-68695.jpeg"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Download file",
+					"request": {
+						"url": "http://localhost:3000/api/files?fileUrl=https://www.googleapis.com/drive/v3/files/0B10zAL1xanraeE94WWhkRzdpaFE&alt=media",
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NTQ0MzE3LCJleHAiOjE0ODc1NTg3MTd9.yvQEixpYAJ29J7agagCP1BD0uTxCDLQ8T4AG1NIFr88",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"description": "",
+			"item": [
+				{
+					"name": "Get Payment Options",
+					"request": {
+						"url": "http://localhost:3000/api/paymentOptions",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Create payment Option",
+					"request": {
+						"url": "http://localhost:3000/api/paymentOptions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NzI3MTY2LCJleHAiOjE0ODc3NDE1NjZ9.e7klqvX6q5XAcI1dRdJ9vvzeKsVvKKYjL1ilhFLqGoo",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Pocztex",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "User creation",
+					"request": {
+						"url": "http://localhost:3000/api/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "ja@wp.pl",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "bankAccount",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "firstName",
+									"value": "Marek",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "lastName",
+									"value": "Krychowiak",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "tel",
+									"value": "516322384",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "houseNumber",
+									"value": "8",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "street",
+									"value": "Nowa",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "city",
+									"value": "Moskwa",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "postalCode",
+									"value": "22-222",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": "Craete new user"
+					},
+					"response": []
+				},
+				{
+					"name": "User signin",
+					"request": {
+						"url": "http://localhost:3000/auth/signin",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "haslo",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "email",
+									"value": "ja@wp.pl",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "User update",
+					"request": {
+						"url": "localhost:3000/api/users/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNDg3NzI3OTA2LCJleHAiOjE0ODc3NDIzMDZ9.Sl_irg_CfNrWrIHP6fT1tvw7hsFuPSQbxun66mX855E",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "ja@wp.pl",
+									"type": "text",
+									"enabled": false
+								},
+								{
+									"key": "password",
+									"value": "haslo",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "bankAccount",
+									"value": "1",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "lastName",
+									"value": "Wojtrek",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "tel",
+									"value": "142423",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "street",
+									"value": "Nowa",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "houseNumber",
+									"value": "43",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "city",
+									"value": "Moskwa",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "postalCode",
+									"value": "43-433",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "firstName",
+									"value": "Marek",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"url": "localhost:3000/api/users/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

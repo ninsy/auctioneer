@@ -38,8 +38,16 @@ exports.get = function(req, res, next) {
 
     if(req.query) {
 
-        searchObj.where = {};
-        searchObj.include =  [];
+        searchObj.where = {
+            finished: {
+                $ne: true
+            }
+        };
+        searchObj.include =  [
+            {
+                // TODO: add marked deliveries + detailed author info + payment options
+            }
+        ];
         searchObj.order = [];
 
         if(req.query.nameSearch) {
@@ -74,15 +82,65 @@ exports.getOne = function(req, res, next) {
     res.json(req.auction);
 };
 
-exports.bids = function(req, res, next) {
-    Models.Bids.findAll({
-        where: {
-            auctionId: req.auction.id
-        }
-    })
-        .then(function(bids) {
-            res.json(bids.rows);
-        }).catch(next);
+exports.specificUserBiddingAuction = function(req, res, next) {
+    Models.Auction.findById(id, {
+        include: [
+            {
+                model: Models.User,
+                as: "author"
+            },
+            {
+                model: Models.Bid,
+                as: "otherBids"
+            },
+            {
+                model: Models.DeliveryOption,
+                where: {
+
+                },
+                include: [Models.Delivery]
+            }
+        ]
+    }).then(function(auction) {
+
+    }).catch(next);
+};
+
+exports.specificUsersAuction = function() {
+    Models.Auction.findById(id, {
+
+    }).then(function(auction) {
+
+    }).catch(next);
+};
+
+exports.userBiddingAuctions = function(req, res, next) {
+    Models.Auction.findAndCountAll({
+        include: [
+            {
+                model: Models.Bid,
+                where: {
+                    authorId: req.user.id
+                },
+                order: "value DESC"
+            }
+        ]
+    }).then(function(auctions) {
+        res.json(auctions.rows);
+    }).catch(next);
+};
+
+exports.usersAuctions = function(req, res, next) {
+    Models.Auction.findAndCountAll({
+        include: [
+            {
+                model: Models.Bid,
+                order: "value DESC"
+            }
+        ]
+    }).then(function(auctions) {
+        res.json(auctions.rows);
+    }).catch(next);
 };
 
 exports.put = function(req, res, next) {

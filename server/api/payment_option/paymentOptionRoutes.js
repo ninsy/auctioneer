@@ -1,5 +1,5 @@
 var router = require("express").Router();
-var ctrl = require("./deliveryOptionController");
+var ctrl = require("./paymentOptionController");
 var auth = require("../../auth/auth");
 
 var checkUser = [auth.decodeToken(), auth.getFreshUser()];

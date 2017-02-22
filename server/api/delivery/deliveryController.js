@@ -71,7 +71,7 @@ exports.create = function(delivery, auctionId) {
         var auction = values[0],
             delivery = values[1];
 
-        auction.deliveryId = payment.id;
+        auction.deliveryId = delivery.id;
         return auction.save().then(function (saved) {
             return {
                 delivery: delivery,

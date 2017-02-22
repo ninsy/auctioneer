@@ -61,6 +61,7 @@ exports.put = function(req, res, next) {
 };
 
 exports.post = function(req, res, next) {
+    req.body.authorId = req.user.id;
     Models.Auction.create(req.body).then(function(newAuction) {
 
         var deliveryObj = {
@@ -71,11 +72,13 @@ exports.post = function(req, res, next) {
         return Promise.all([
             deliveryCtrl.create(deliveryObj, newAuction.id),
             paymentCtrl.create({}, newAuction.id),
-            deliveryOptionCtrl.makeChoice(req.user.id, req.body.deliveryOption, newAuction.id),
-            paymentOptionCtrl.makeChoice(req.user.id, req.body.paymentOption, newAuction.id)
+            deliveryOptionCtrl.makeChoice(req.user.id, parseInt(req.body.deliveryOption), newAuction.id),
+            paymentOptionCtrl.makeChoice(req.user.id, parseInt(req.body.paymentOption), newAuction.id)
         ]).then(function(values) {
 
-            _.merge(newAuction, [values[0].auction, values[1].auction]);
+            newAuction.dataValues.deliveryId = values[0].auction.dataValues.deliveryId;
+            newAuction.dataValues.paymentId = values[1].auction.dataValues.paymentId;
+
             res.json(newAuction);
 
         }).catch(function(err) {

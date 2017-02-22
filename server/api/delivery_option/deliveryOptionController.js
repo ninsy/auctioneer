@@ -27,7 +27,7 @@ exports.makeChoice = function(userId, optionId, auctionId) {
         return Models.UserChosenDelivery.create({
             authorId: userId,
             auctionId: auctionId,
-            chosenPayment: option.id
+            chosenDelivery: option.id
         }).then(function(userOption) {
             return userOption
         });

@@ -59,6 +59,8 @@ exports.params = function(req, res, next, id) {
         ]
     })
         .then(function(auction) {
+            auction.topBid = auction.Bids[0];
+            delete auction.Bids;
             if (!auction) {
                 next({status: 404, message: `Auction with id [${id}] doesn't exist`});
             } else {

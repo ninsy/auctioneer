@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f36f66c-7c09-4f72-b061-4daa59756dae" name="Default" comment="Heroku build">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/user_chosen_delivery.js" afterPath="$PROJECT_DIR$/server/models/user_chosen_delivery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/user_chosen_payment.js" afterPath="$PROJECT_DIR$/server/models/user_chosen_payment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/db.js" afterPath="$PROJECT_DIR$/server/models/db.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +17,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="auctionController.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="auctionController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/api/auction/auctionController.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="49">
@@ -43,16 +42,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="235">
               <caret line="36" column="21" lean-forward="false" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="paymentOptionController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/api/payment_option/paymentOptionController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1">
-              <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -98,11 +87,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/models/payment.js">
+      <file leaf-file-name="delivery.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/models/delivery.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+            <state relative-caret-position="360">
+              <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/models/db.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="469">
+              <caret line="41" column="33" lean-forward="false" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -197,12 +196,12 @@
         <option value="$PROJECT_DIR$/server/models/payment_option.js" />
         <option value="$PROJECT_DIR$/server/api/category/categoryRoutes.js" />
         <option value="$PROJECT_DIR$/server/models/auction.js" />
-        <option value="$PROJECT_DIR$/server/models/db.js" />
         <option value="$PROJECT_DIR$/server/api/delivery_option/deliveryOptionController.js" />
         <option value="$PROJECT_DIR$/server/api/payment_option/paymentOptionController.js" />
         <option value="$PROJECT_DIR$/server/api/auction/auctionController.js" />
         <option value="$PROJECT_DIR$/server/models/user_chosen_delivery.js" />
         <option value="$PROJECT_DIR$/server/models/user_chosen_payment.js" />
+        <option value="$PROJECT_DIR$/server/models/db.js" />
       </list>
     </option>
   </component>
@@ -884,12 +883,12 @@
       <workItem from="1487764365720" duration="1316000" />
       <workItem from="1487797020291" duration="3186000" />
       <workItem from="1487971383714" duration="5407000" />
-      <workItem from="1488041142151" duration="5632000" />
+      <workItem from="1488041142151" duration="6149000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87490000" />
+    <option name="totallyTimeSpent" value="88007000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1261,21 +1260,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="3" selection-end-line="42" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/delivery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/models/auction_category.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1408,6 +1392,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="49">
           <caret line="178" column="52" lean-forward="false" selection-start-line="178" selection-start-column="52" selection-end-line="178" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/delivery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="41" column="33" lean-forward="false" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
           <folding />
         </state>
       </provider>

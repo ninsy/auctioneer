@@ -187,13 +187,18 @@ exports.post = function(req, res, next) {
             return Promise.all([
                 deliveryCtrl.create(deliveryObj, newAuction.id),
                 paymentCtrl.create({}, newAuction.id),
-                deliveryOptionCtrl.makeChoice(req.user.id, parseInt(req.body.deliveryOption), newAuction.id),
-                paymentOptionCtrl.makeChoice(req.user.id, parseInt(req.body.paymentOption), newAuction.id),
+                deliveryOptionCtrl.makeChoice(req.user.id, req.body.deliveryOption, newAuction.id),
+                paymentOptionCtrl.makeChoice(req.user.id, req.body.paymentOption, newAuction.id),
                 newAuction.addCategories(req.body.categoryIds)
             ]).then(function(values) {
 
                 newAuction.dataValues.deliveryId = values[0].auction.dataValues.deliveryId;
                 newAuction.dataValues.paymentId = values[1].auction.dataValues.paymentId;
+                newAuction.dataValues.chosenDeliveryOptions = values[2].chosenDeliveries;
+                newAuction.dataValues.chosenPaymentOptions = values[3].chosenPayments;
+                newAuction.dataValues.categoryIds = values[4][0].map(function(option) {
+                    return option.dataValues.CategoryId;
+                });
 
                 res.json(newAuction);
 

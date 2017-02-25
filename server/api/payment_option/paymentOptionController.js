@@ -12,28 +12,36 @@ exports.createChoice = function(req, res, next) {
     }).catch(next);
 };
 
-exports.makeChoice = function (userId, optionId, auctionId) {
+exports.makeChoice = function (userId, optionIdArray, auctionId) {
 
+    optionIdArray = JSON.parse(optionIdArray);
 
-    return Models.PaymentOption.findAndCountAll().then(function(options) {
+    return Models.PaymentOption.findAndCountAll(
+        {
+            where: {
+                id: {
+                    $in: optionIdArray
+                }
+            }
+        }).then(function(options) {
 
-        var idx = options.rows.findIndex(function(option) {
-            return option.id === optionId;
-        });
+        // TODO: handle mismatch between actual data and optionIdsArray
 
-        if(idx === -1) {
-            return Promise.reject({message: `Payment Option with id ${optionId} doesn't exist`})
+        var choices = [];
+        for(let i = 0; i < options.rows.length; i++) {
+            choices.push({
+                authorId: userId,
+                auctionId: auctionId,
+                chosenPayment: options.rows[i].id
+            });
         }
-        var option = options.rows[idx];
 
-        return Models.UserChosenPayment.create({
-            authorId: userId,
-            auctionId: auctionId,
-            chosenPayment: option.id
-        }).then(function(userOption) {
-            return userOption
-        });
-
+        return Models.UserChosenPayment.bulkCreate(choices)
+            .then(function() {
+                return {
+                    chosenPayments: options.rows
+                }
+            });
     });
 };
 

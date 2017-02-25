@@ -33,27 +33,22 @@ exports.makeChoice = function(userId, optionIdsArray, auctionId) {
         }).then(function(options) {
 
         // TODO: handle mismatch between actual data and optionIdsArray
-        // var idx = options.rows.findIndex(function(option) {
-        //     return option.id === optionId;
-        // });
-        //
-        // if(idx === -1) {
-        //     return Promise.reject({message: `Delivery Option with id ${optionId} doesn't exist`})
-        // }
-        // var option = options.rows[idx];
 
-        var chosenDeliveryPromises = [];
+        var choices = [];
         for(let i = 0; i < options.rows.length; i++) {
-            chosenDeliveryPromises.push(promisify(Models.UserChosenDelivery.create, {
+            choices.push({
                 authorId: userId,
                 auctionId: auctionId,
                 chosenDelivery: options.rows[i].id
-            }));
+            });
         }
 
-        return Promise.all(chosenDeliveryPromises).then(function(userOption) {
-            return userOption
-        });
+        return Models.UserChosenDelivery.bulkCreate(choices)
+            .then(function() {
+                return {
+                    chosenDeliveries: options.rows
+                }
+            })
 
     });
 };

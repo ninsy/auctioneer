@@ -19,7 +19,27 @@ exports.params = function(req, res, next, id) {
                 },
                 required: false,
                 order: "value DESC"
-            }
+            },
+            {
+                model: Models.UserChosenPayment,
+                where: {
+                    $and: {
+                        auctionId: id,
+                        authorId: Models.sequelize.col("Auction.authorId")
+                    }
+                },
+                include: [Models.PaymentOption]
+            },
+            {
+                model: Models.UserChosenDelivery,
+                where: {
+                    $and: {
+                        auctionId: id,
+                        authorId: Models.sequelize.col("Auction.authorId")
+                    }
+                },
+                include: [Models.DeliveryOption]
+            },
         ]
     })
         .then(function(auction) {

@@ -1,6 +1,7 @@
 var Models = require("../../models/db");
 var _ = require("lodash");
 var belongsHelper = require("../../util/belongsToManyHelper");
+var sequelize = require("sequelize");
 
 var paymentCtrl =  require("../payment/paymentController"),
     paymentOptionCtrl = require("../payment_option/paymentOptionController"),
@@ -17,8 +18,7 @@ exports.params = function(req, res, next, id) {
                 where: {
                     auctionId: id,
                 },
-                required: false,
-                order: "value DESC"
+                required: false
             },
             {
                 model: Models.UserChosenPayment,
@@ -56,11 +56,15 @@ exports.params = function(req, res, next, id) {
                     id: Models.sequelize.col("Auction.paymentId")
                 }
             }
+        ],
+        order: [
+            [ Models.Bid, 'value', 'DESC']
         ]
     })
         .then(function(auction) {
-            auction.topBid = auction.Bids[0];
-            delete auction.Bids;
+            auction.dataValues.topBid = auction.Bids[0];
+            auction.dataValues.bidCount = auction.Bids.length;
+            delete auction.dataValues.Bids;
             if (!auction) {
                 next({status: 404, message: `Auction with id [${id}] doesn't exist`});
             } else {
@@ -82,11 +86,15 @@ exports.get = function(req, res, next) {
             }
         };
         searchObj.include =  [
-            // {
-            //     // TODO: add marked deliveries + detailed author info + payment options
-            // }
+            {
+                model: Models.Bid,
+                where: {
+                    auctionId: Models.sequelize.col("Auction.id")
+                },
+                required: false
+            }
         ];
-        searchObj.order = [];
+        searchObj.order = [[ Models.Bid, 'value', 'DESC']];
 
         if(req.query.nameSearch) {
             searchObj.where.name = {
@@ -112,44 +120,19 @@ exports.get = function(req, res, next) {
         }
     }
     Models.Auction.findAndCountAll(searchObj).then(function(auctions) {
+
+        for(var i = 0; i < auctions.rows.length; i++) {
+            auctions.rows[i].dataValues.topBid = auctions.rows[i].Bids[0];
+            auctions.rows[i].dataValues.bidCount = auctions.rows[i].Bids.length;
+            delete auctions.rows[i].dataValues.Bids;
+        }
+
         res.json(auctions.rows);
     }).catch(next);
 };
 
 exports.getOne = function(req, res, next) {
     res.json(req.auction);
-};
-
-exports.specificUserBiddingAuction = function(req, res, next) {
-    Models.Auction.findById(id, {
-        include: [
-            {
-                model: Models.User,
-                as: "author"
-            },
-            {
-                model: Models.Bid,
-                as: "otherBids"
-            },
-            {
-                model: Models.DeliveryOption,
-                where: {
-
-                },
-                include: [Models.Delivery]
-            }
-        ]
-    }).then(function(auction) {
-
-    }).catch(next);
-};
-
-exports.specificUsersAuction = function() {
-    Models.Auction.findById(id, {
-
-    }).then(function(auction) {
-
-    }).catch(next);
 };
 
 exports.userBiddingAuctions = function(req, res, next) {
@@ -159,11 +142,18 @@ exports.userBiddingAuctions = function(req, res, next) {
                 model: Models.Bid,
                 where: {
                     authorId: req.user.id
-                },
-                order: "value DESC"
+                }
             }
+        ],
+        order: [
+            [ Models.Bid, 'value', 'DESC']
         ]
     }).then(function(auctions) {
+        for(var i = 0; i < auctions.rows.length; i++) {
+            auctions.rows[i].dataValues.topBid = auctions.rows[i].Bids[0];
+            auctions.rows[i].dataValues.bidCount = auctions.rows[i].Bids.length;
+            delete auctions.rows[i].dataValues.Bids;
+        }
         res.json(auctions.rows);
     }).catch(next);
 };
@@ -172,11 +162,21 @@ exports.usersAuctions = function(req, res, next) {
     Models.Auction.findAndCountAll({
         include: [
             {
-                model: Models.Bid,
-                order: "value DESC"
+                model: Models.Bid
             }
+        ],
+        where: {
+            id: req.user.id
+        },
+        order: [
+            [ Models.Bid, 'value', 'DESC']
         ]
     }).then(function(auctions) {
+        for(var i = 0; i < auctions.rows.length; i++) {
+            auctions.rows[i].dataValues.topBid = auctions.rows[i].Bids[0];
+            auctions.rows[i].dataValues.bidCount = auctions.rows[i].Bids.length;
+            delete auctions.rows[i].dataValues.Bids;
+        }
         res.json(auctions.rows);
     }).catch(next);
 };

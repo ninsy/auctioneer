@@ -39,6 +39,10 @@ exports.createBid = function(req, res, next) {
     }).catch(next)
 };
 
+exports.intialBid = function(authorId, startPrice, auctionId) {
+    return Models.Bid.create({value: startPrice, authorId, auctionId});
+};
+
 exports.updateBid = function(req, res, next) {
     var bid = req.bid;
     var update = req.bid;

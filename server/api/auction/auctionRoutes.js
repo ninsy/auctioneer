@@ -9,8 +9,8 @@ router.use("/:auctionId/bids", require("../bid/bidRoutes"));
 
 router.param("id", ctrl.params);
 
-router.get("/myBidding", ctrl.userBiddingAuctions);
-router.get("/myPosted", ctrl.usersAuctions);
+router.get("/myBidding", checkUser, ctrl.userBiddingAuctions);
+router.get("/myPosted", checkUser, ctrl.usersAuctions);
 
 router.route("/")
   .get(ctrl.get)

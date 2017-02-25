@@ -12,23 +12,46 @@ exports.createChoice = function (req, res, next) {
     }).catch(next);
 };
 
-exports.makeChoice = function(userId, optionId, auctionId) {
-    return Models.DeliveryOption.findAndCountAll().then(function(options) {
+function promisify(fn,entity) {
+    return function() {
+        return fn(entity);
+    }
+}
 
-        var idx = options.rows.findIndex(function(option) {
-            return option.id === optionId;
-        });
 
-        if(idx === -1) {
-            return Promise.reject({message: `Delivery Option with id ${optionId} doesn't exist`})
+exports.makeChoice = function(userId, optionIdsArray, auctionId) {
+
+    optionIdsArray = JSON.parse(optionIdsArray);
+
+    return Models.DeliveryOption.findAndCountAll(
+        {
+            where: {
+                id: {
+                    $in: optionIdsArray
+                }
+            }
+        }).then(function(options) {
+
+        // TODO: handle mismatch between actual data and optionIdsArray
+        // var idx = options.rows.findIndex(function(option) {
+        //     return option.id === optionId;
+        // });
+        //
+        // if(idx === -1) {
+        //     return Promise.reject({message: `Delivery Option with id ${optionId} doesn't exist`})
+        // }
+        // var option = options.rows[idx];
+
+        var chosenDeliveryPromises = [];
+        for(let i = 0; i < options.rows.length; i++) {
+            chosenDeliveryPromises.push(promisify(Models.UserChosenDelivery.create, {
+                authorId: userId,
+                auctionId: auctionId,
+                chosenDelivery: options.rows[i].id
+            }));
         }
-        var option = options.rows[idx];
 
-        return Models.UserChosenDelivery.create({
-            authorId: userId,
-            auctionId: auctionId,
-            chosenDelivery: option.id
-        }).then(function(userOption) {
+        return Promise.all(chosenDeliveryPromises).then(function(userOption) {
             return userOption
         });
 

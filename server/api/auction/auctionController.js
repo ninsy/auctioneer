@@ -177,12 +177,12 @@ exports.post = function(req, res, next) {
         };
 
         req.body.categoryIds = JSON.parse(req.body.categoryIds);
-        var promiseArr = [];
+        var categoryPromiseArr = [];
         for(let i = 0; i < req.body.categoryIds.length; i++) {
-            promiseArr.push(promisify(newAuction.addCategories), req.body.categoryIds[i]);
+            categoryPromiseArr.push(promisify(newAuction.addCategories), req.body.categoryIds[i]);
         }
 
-        Promise.all(promiseArr).then(function() {
+        Promise.all(categoryPromiseArr).then(function() {
 
             return Promise.all([
                 deliveryCtrl.create(deliveryObj, newAuction.id),

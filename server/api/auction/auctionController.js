@@ -162,6 +162,14 @@ function promisify(fn,id) {
 
 exports.post = function(req, res, next) {
     req.body.authorId = req.user.id;
+
+    if(!req.body.hasOwnProperty("deliveryOption") || !req.body.hasOwnProperty("paymentOption") ||
+       !req.body.hasOwnProperty("deliveryCost") || !req.body.hasOwnProperty("deliveryDate") ||
+       !req.body.hasOwnProperty("categoryIds")) {
+        res.status(400).json({message: "You need to provide metadata about auction payment, delivery and categories"});
+        return;
+    }
+
     Models.Auction.create(req.body).then(function(newAuction) {
 
         var deliveryObj = {

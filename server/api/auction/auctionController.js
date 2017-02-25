@@ -13,7 +13,7 @@ exports.params = function(req, res, next, id) {
         include: [
             {
                 model: Models.Bid,
-                as: "bids",
+                 as: "bids",
                 where: {
                     auctionId: id,
                 },
@@ -44,9 +44,9 @@ exports.get = function(req, res, next) {
             }
         };
         searchObj.include =  [
-            {
-                // TODO: add marked deliveries + detailed author info + payment options
-            }
+            // {
+            //     // TODO: add marked deliveries + detailed author info + payment options
+            // }
         ];
         searchObj.order = [];
 

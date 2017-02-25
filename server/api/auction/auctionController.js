@@ -13,7 +13,6 @@ exports.params = function(req, res, next, id) {
         include: [
             {
                 model: Models.Bid,
-                 as: "bids",
                 where: {
                     auctionId: id,
                 },
@@ -22,6 +21,7 @@ exports.params = function(req, res, next, id) {
             },
             {
                 model: Models.UserChosenPayment,
+                as: "possiblePayments",
                 where: {
                     $and: {
                         auctionId: id,
@@ -32,6 +32,7 @@ exports.params = function(req, res, next, id) {
             },
             {
                 model: Models.UserChosenDelivery,
+                as: "possibleDeliveries",
                 where: {
                     $and: {
                         auctionId: id,
@@ -40,6 +41,20 @@ exports.params = function(req, res, next, id) {
                 },
                 include: [Models.DeliveryOption]
             },
+            {
+                model: Models.Delivery,
+                as: "deliveryData",
+                where: {
+                    id: Models.sequelize.col("Auction.deliveryId")
+                }
+            },
+            {
+                model: Models.Payment,
+                as: "paymentData",
+                where: {
+                    id: Models.sequelize.col("Auction.paymentId")
+                }
+            }
         ]
     })
         .then(function(auction) {

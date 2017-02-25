@@ -54,9 +54,14 @@ module.exports = function(sequelize, DataTypes) {
           Auction.belongsTo(models.User, {
             foreignKey: "authorId"
           });
+          Auction.hasMany(models.Bid, {
+              foreignKey: "auctionId"
+          });
+          Auction.hasMany(models.UserChosenDelivery, { foreignKey: "auctionId", as: "possibleDeliveries"});
+          Auction.hasMany(models.UserChosenPayment, { foreignKey: "auctionId",as: "possiblePayments"});
           Auction.belongsToMany(models.Category, {through: models.AuctionCategory});
-          Auction.belongsTo(models.Delivery, {foreignKey: "deliveryId"});
-          Auction.belongsTo(models.Payment, {foreignKey: "paymentId"});
+          Auction.belongsTo(models.Delivery, {foreignKey: "deliveryId", as: "deliveryData"});
+          Auction.belongsTo(models.Payment, {foreignKey: "paymentId", as:"paymentData"});
         }
       },
       hooks: {

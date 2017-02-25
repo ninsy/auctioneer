@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Bid.belongsTo(models.User, {
-          foreignKey: "authorId"
+            foreignKey: "authorId"
         });
         Bid.belongsTo(models.Auction, {
           foreignKey: "auctionId"
@@ -55,7 +55,7 @@ module.exports = function(sequelize, DataTypes) {
           },
           order: "value DESC"
       }).then(function(rows) {
-          if(rows[0].value >= bid.value) {
+          if(rows.length && rows[0].value >= bid.value) {
               return Sequelize.Promise.reject({message: "You have to post bid value greater than current top one."});
           }
       }).catch(Sequelize.Promise.reject);

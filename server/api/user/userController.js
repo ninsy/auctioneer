@@ -84,7 +84,7 @@ exports.put = function(req, res, next) {
 
 exports.post = function(req, res, next) {
     Models.User.create(req.body).then(function(user) {
-        var token = signToken(user._id);
+        var token = signToken(user.id);
         res.json({token: token});
     }).catch(next);
 };

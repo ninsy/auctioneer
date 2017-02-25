@@ -4,8 +4,6 @@ module.exports = function(router, ctrl) {
 
   var checkUser = [auth.decodeToken(), auth.getFreshUser()];
 
-  debugger;
-
   router.param("id", ctrl.params);
 
   router.route("/")

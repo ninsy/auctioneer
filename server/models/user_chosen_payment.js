@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         classMethods: {
             associate: function(models) {
                 UserChosenPayment.hasMany(models.PaymentOption, {
-                    foreignKey: "chosenPaymentId"
+                    foreignKey: "id"
                 });
                 UserChosenPayment.belongsTo(models.User, {
                     foreignKey: "authorId"

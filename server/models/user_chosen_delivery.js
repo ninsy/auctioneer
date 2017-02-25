@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         classMethods: {
             associate: function(models) {
                 UserChosenDelivery.hasMany(models.DeliveryOption, {
-                    foreignKey: "chosenDeliveryId"
+                    foreignKey: "id"
                 });
                 UserChosenDelivery.belongsTo(models.User, {
                     foreignKey: "authorId"

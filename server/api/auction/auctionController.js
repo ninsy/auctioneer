@@ -70,8 +70,9 @@ exports.params = function(req, res, next, id) {
                 auction.dataValues.bidCount = auction.Bids.length;
                 delete auction.dataValues.Bids;
                 if(Date.parse(auction.finishes) <= Date.now()) {
-                    auctions.finished = true;
+                    auction.finished = true;
                 }
+                auction.finished = auction.finished.toString();
                 next();
             }
         }).catch(next);
@@ -132,6 +133,7 @@ exports.get = function(req, res, next) {
             if(Date.parse(auctions.rows[i].finishes) <= Date.now()) {
                 auctions.rows[i].finished = true;
             }
+            auctions.rows[i].finished = auctions.rows[i].finished.toString();
         }
 
         res.json(auctions.rows);
@@ -187,6 +189,10 @@ exports.userBiddingAuctions = function(req, res, next) {
             auctions.rows[i].dataValues.topBid = auctions.rows[i].Bids[0];
             auctions.rows[i].dataValues.bidCount = auctions.rows[i].Bids.length;
             delete auctions.rows[i].dataValues.Bids;
+            if(Date.parse(auctions.rows[i].finishes) <= Date.now()) {
+                auctions.rows[i].finished = true;
+            }
+            auctions.rows[i].finished = auctions.rows[i].finished.toString();
         }
         res.json(auctions.rows);
     }).catch(next);
@@ -210,6 +216,8 @@ exports.usersAuctions = function(req, res, next) {
             auctions.rows[i].dataValues.topBid = auctions.rows[i].Bids[0];
             auctions.rows[i].dataValues.bidCount = auctions.rows[i].Bids.length;
             delete auctions.rows[i].dataValues.Bids;
+            auctions.rows[i].finished = auctions.rows[i].finished.toString();
+
         }
         res.json(auctions.rows);
     }).catch(next);

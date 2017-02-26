@@ -141,10 +141,13 @@ exports.userBiddingAuctions = function(req, res, next) {
             {
                 model: Models.Bid,
                 where: {
-                    authorId: req.user.id
+                   authorId: req.user.id
                 }
             }
         ],
+        where: {
+            id: { $notIn: [`SELECT 'Aukcje.id' FROM 'Aukcje.Auctions' WHERE 'Aukcje.authorId' = ${req.user.id}`]}
+        },
         order: [
             [ Models.Bid, 'value', 'DESC']
         ]
@@ -166,7 +169,7 @@ exports.usersAuctions = function(req, res, next) {
             }
         ],
         where: {
-            id: req.user.id
+            authorId: req.user.id
         },
         order: [
             [ Models.Bid, 'value', 'DESC']

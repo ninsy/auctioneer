@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f36f66c-7c09-4f72-b061-4daa59756dae" name="Default" comment="Heroku build">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/db.js" afterPath="$PROJECT_DIR$/server/models/db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/delivery_option.js" afterPath="$PROJECT_DIR$/server/models/delivery_option.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/user.js" afterPath="$PROJECT_DIR$/server/models/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/user_chosen_delivery.js" afterPath="$PROJECT_DIR$/server/models/user_chosen_delivery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/user_chosen_payment.js" afterPath="$PROJECT_DIR$/server/models/user_chosen_payment.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -85,8 +80,8 @@
       <file leaf-file-name="db.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/models/db.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+            <state relative-caret-position="389">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="3" selection-end-line="42" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -821,12 +816,12 @@
       <workItem from="1487971383714" duration="5407000" />
       <workItem from="1488041142151" duration="17764000" />
       <workItem from="1488060906537" duration="6118000" />
-      <workItem from="1488122390786" duration="2193000" />
+      <workItem from="1488122390786" duration="2394000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107933000" />
+    <option name="totallyTimeSpent" value="108134000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1326,8 +1321,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/models/db.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="38" column="33" lean-forward="false" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+        <state relative-caret-position="389">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="3" selection-end-line="42" selection-end-column="10" />
           <folding />
         </state>
       </provider>

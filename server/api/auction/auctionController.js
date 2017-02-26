@@ -61,13 +61,17 @@ exports.params = function(req, res, next, id) {
         ]
     })
         .then(function(auction) {
-            auction.dataValues.topBid = auction.Bids[0];
-            auction.dataValues.bidCount = auction.Bids.length;
-            delete auction.dataValues.Bids;
+
             if (!auction) {
                 next({status: 404, message: `Auction with id [${id}] doesn't exist`});
             } else {
                 req.auction = auction;
+                auction.dataValues.topBid = auction.Bids[0];
+                auction.dataValues.bidCount = auction.Bids.length;
+                delete auction.dataValues.Bids;
+                if(Date.parse(auction.finishes) <= Date.now()) {
+                    auctions.finished = true;
+                }
                 next();
             }
         }).catch(next);
@@ -124,6 +128,9 @@ exports.get = function(req, res, next) {
             auctions.rows[i].dataValues.topBid = auctions.rows[i].Bids[0];
             auctions.rows[i].dataValues.bidCount = auctions.rows[i].Bids.length;
             delete auctions.rows[i].dataValues.Bids;
+            if(Date.parse(auctions.rows[i].finishes) <= Date.now()) {
+                auctions.rows[i].finished = true;
+            }
         }
 
         res.json(auctions.rows);
@@ -135,23 +142,47 @@ exports.getOne = function(req, res, next) {
 };
 
 exports.userBiddingAuctions = function(req, res, next) {
+
+    // TODO: fucked-up ORM, gonna switch to POSTGRES to handle such trivial cases.
+    // sequelize.query(`SELECT * FROM aukcje.Auctions INNER JOIN aukcje.Bids ON aukcje.Bids.auctionId = aukcje.Auctions.id WHERE EXISTS (SELECT id FROM aukcje.Bids WHERE aukcje.Bids.authorId = ${req.user.id}) AND aukcje.Auctions.id NOT IN (SELECT 'aukcje.id' FROM 'aukcje.Auctions' WHERE 'aukcje.authorId' = ${req.user.id}) ORDER BY aukcje.Bids.value DESC`)
+    //     .then(function(auctions) {
+    //         for(var i = 0; i < auctions.rows.length; i++) {
+    //             auctions.rows[i].dataValues.topBid = auctions.rows[i].Bids[0];
+    //             auctions.rows[i].dataValues.bidCount = auctions.rows[i].Bids.length;
+    //             delete auctions.rows[i].dataValues.Bids;
+    //         }
+    //         res.json(auctions.rows);
+    //     }).catch(next);
+
+
     Models.Auction.findAndCountAll({
         include: [
             {
                 model: Models.Bid,
-                where: {
-                   authorId: req.user.id
-                }
+                // where: [`EXISTS (SELECT 'id' FROM 'aukcje.Bids' WHERE 'aukcje.Bids.authorId' = ${req.user.id})`]
+                // where: {
+                //    authorId: {
+                //        $contains: req.user.id
+                //    }
+                // }
             }
         ],
         where: {
-            id: { $notIn: [`SELECT 'Aukcje.id' FROM 'Aukcje.Auctions' WHERE 'Aukcje.authorId' = ${req.user.id}`]}
+            id: { $notIn: [`SELECT 'aukcje.id' FROM 'aukcje.Auctions' WHERE 'aukcje.authorId' = ${req.user.id}`]}
         },
         order: [
             [ Models.Bid, 'value', 'DESC']
         ]
     }).then(function(auctions) {
-        for(var i = 0; i < auctions.rows.length; i++) {
+
+        auctions.rows = auctions.rows.filter(function(auction) {
+            var usrIdx = auction.dataValues.Bids.findIndex(function (bid) {
+                return bid.authorId === req.user.id
+            });
+            return usrIdx !== -1;
+        });
+
+        for(var i = 0; i < auctions.rows.length ; i++) {
             auctions.rows[i].dataValues.topBid = auctions.rows[i].Bids[0];
             auctions.rows[i].dataValues.bidCount = auctions.rows[i].Bids.length;
             delete auctions.rows[i].dataValues.Bids;

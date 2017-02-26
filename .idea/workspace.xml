@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f36f66c-7c09-4f72-b061-4daa59756dae" name="Default" comment="Heroku build">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/api/auction/auctionController.js" afterPath="$PROJECT_DIR$/server/api/auction/auctionController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/api/auction/auctionRoutes.js" afterPath="$PROJECT_DIR$/server/api/auction/auctionRoutes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/db.js" afterPath="$PROJECT_DIR$/server/models/db.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -104,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/server/models/db.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="389">
-              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="42" selection-end-column="7" />
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="3" selection-end-line="42" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -893,12 +890,12 @@
       <workItem from="1487971383714" duration="5407000" />
       <workItem from="1488041142151" duration="17764000" />
       <workItem from="1488060906537" duration="6118000" />
-      <workItem from="1488122390786" duration="8068000" />
+      <workItem from="1488122390786" duration="8134000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113808000" />
+    <option name="totallyTimeSpent" value="113874000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -911,7 +908,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-3" width="1922" height="1048" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -934,7 +931,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2745946" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2745946" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1407,7 +1404,7 @@
     <entry file="file://$PROJECT_DIR$/server/models/db.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="42" selection-end-column="7" />
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="3" selection-end-line="42" selection-end-column="10" />
           <folding />
         </state>
       </provider>

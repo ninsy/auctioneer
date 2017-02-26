@@ -6,6 +6,9 @@ var checkUser = [auth.decodeToken(), auth.getFreshUser()];
 
 
 router.use("/:auctionId/bids", require("../bid/bidRoutes"));
+router.use("/:auctionId/delivery", require("../delivery/deliveryRoutes"));
+router.use("/:auctionId/delivery", require("../payment/paymentRoutes"));
+
 router.use("/:auctionId/boughtChoices", ctrl.boughtChoices);
 
 router.param("id", ctrl.params);

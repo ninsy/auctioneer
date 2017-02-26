@@ -97,6 +97,7 @@ exports.get = function(req, res, next) {
                 required: false
             }
         ];
+        // TODO: make ordering by value passed in req.params
         searchObj.order = [[ Models.Bid, 'value', 'DESC']];
 
         if(req.query.nameSearch) {

@@ -1,6 +1,5 @@
 var Models = require("../../models/db");
 var _ = require("lodash");
-var belongsHelper = require("../../util/belongsToManyHelper");
 var sequelize = require("sequelize");
 
 var paymentCtrl =  require("../payment/paymentController"),
@@ -195,12 +194,6 @@ exports.put = function(req, res, next) {
     }).catch(next);
 };
 
-function promisify(fn,id) {
-    return function() {
-        return fn(id);
-    }
-}
-
 exports.post = function(req, res, next) {
     req.body.authorId = req.user.id;
 
@@ -255,8 +248,36 @@ exports.post = function(req, res, next) {
     }).catch(next)
 };
 
+exports.boughtChoices = function(req, res, next) {
+
+    if(!req.auction.finished) {
+        return res.status(400).json({message: `Auction ${req.auction.id} has not yet finished.`});
+    }
+    if(!req.auction.Bids[0].authorId !== req.user.id) {
+        return res.status(400).json({message: `You have not won auction of id: ${req.auction.id}!`});
+    }
+    if(Object.prototype.toString.call(req.body.deliveryOption) !== "[object Array]" && req.body.deliveryOption.length > 1) {
+        return res.status(400).json({message: `You need to provide single delivery option id in form of one-element array, like: [23]`})
+    }
+    if(Object.prototype.toString.call(req.body.paymentOption) !== "[object Array]" && req.body.paymentOption.length > 1) {
+        return res.status(400).json({message: `You need to provide single payment option id in form of one-element array, like: [79]`})
+    }
+    Promise.all([
+        deliveryOptionCtrl.makeChoice(req.user.id, req.body.deliveryOption, req.auction.id),
+        paymentOptionCtrl.makeChoice(req.user.id, req.body.paymentOption, req.auction.id)
+    ]).then(function(values) {
+        res.status(200).json({message: `Auction ${req.auction.id} has been assigned with delivery option id: ${values[0].chosenDeliveries} and payment option id: ${values[1].chosenPayments}.`})
+    });
+};
+
 exports.delete = function(req, res, next) {
     req.auction.destroy().then(function(deletedAuction) {
         res.json(deletedAuction);
     }).catch(next);
 };
+
+function promisify(fn,id) {
+    return function() {
+        return fn(id);
+    }
+}

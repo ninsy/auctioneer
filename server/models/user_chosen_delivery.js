@@ -6,7 +6,7 @@ var models = require("./db");
 module.exports = function(sequelize, DataTypes) {
     var UserChosenDelivery = sequelize.define("UserChosenDelivery", {
         auctionId: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.INTEGER,
             allowNull: false
         },
         authorId: {
@@ -26,6 +26,9 @@ module.exports = function(sequelize, DataTypes) {
                 });
                 UserChosenDelivery.belongsTo(models.User, {
                     foreignKey: "authorId"
+                });
+                UserChosenDelivery.belongsTo(models.Auction, {
+                    foreignKey: "auctionId"
                 });
             },
 

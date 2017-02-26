@@ -6,16 +6,13 @@ var models = require("./db");
 module.exports = function(sequelize, DataTypes) {
     var UserChosenPayment = sequelize.define("UserChosenPayment", {
         auctionId: {
-            type: Sequelize.BOOLEAN,
-            allowNull: false
+            type: Sequelize.INTEGER
         },
         authorId: {
-            type: Sequelize.INTEGER,
-            allowNull: false
+            type: Sequelize.INTEGER
         },
         chosenPayment: {
-            type: Sequelize.INTEGER,
-            allowNull: false
+            type: Sequelize.INTEGER
         }
     },{
         classMethods: {
@@ -26,6 +23,10 @@ module.exports = function(sequelize, DataTypes) {
                 UserChosenPayment.belongsTo(models.User, {
                     foreignKey: "authorId"
                 });
+                UserChosenPayment.belongsTo(models.Auction, {
+                    foreignKey: "auctionId"
+                });
+
             }
         },
     });

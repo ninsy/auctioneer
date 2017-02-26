@@ -20,11 +20,11 @@ module.exports = function(sequelize, DataTypes) {
         }
     },{
         classMethods: {
-            // associate: function(models) {
-            //     DeliveryOption.belongsTo(models.Delivery,{
-            //         foreignKey: "deliveryId"
-            //     });
-            // }
+            associate: function(models) {
+                DeliveryOption.hasMany(models.UserChosenDelivery, {
+                    foreignKey: "chosenDelivery"
+                });
+            }
         },
     });
     return DeliveryOption;

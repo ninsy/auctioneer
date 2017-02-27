@@ -86,7 +86,7 @@ exports.get = function(req, res, next) {
 
         searchObj.where = {
             $and: [
-                {id: { $not: true}}
+                {finished: { $not: true}}
             ]
         };
         searchObj.include =  [

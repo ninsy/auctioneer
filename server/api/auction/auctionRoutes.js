@@ -4,14 +4,15 @@ var auth = require("../../auth/auth");
 
 var checkUser = [auth.decodeToken(), auth.getFreshUser()];
 
+// TODO: should always attach that auction obj
+
+router.param("id", ctrl.params);
 
 router.use("/:auctionId/bids", require("../bid/bidRoutes"));
 router.use("/:auctionId/delivery", require("../delivery/deliveryRoutes"));
 router.use("/:auctionId/payment", require("../payment/paymentRoutes"));
 
-router.use("/:auctionId/boughtChoices", ctrl.boughtChoices);
-
-router.param("id", ctrl.params);
+router.use("/:id/boughtChoices", ctrl.boughtChoices);
 
 router.get("/myBidding", checkUser, ctrl.userBiddingAuctions);
 router.get("/myPosted", checkUser, ctrl.usersAuctions);

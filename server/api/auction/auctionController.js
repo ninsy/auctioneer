@@ -28,6 +28,7 @@ exports.params = function(req, res, next, id) {
                         authorId: Models.sequelize.col("Auction.authorId")
                     }
                 },
+                required: false,
                 include: [Models.PaymentOption]
             },
             {
@@ -39,11 +40,13 @@ exports.params = function(req, res, next, id) {
                         authorId: Models.sequelize.col("Auction.authorId")
                     }
                 },
+                required: false,
                 include: [Models.DeliveryOption]
             },
             {
                 model: Models.Delivery,
                 as: "deliveryData",
+                required: false,
                 where: {
                     id: Models.sequelize.col("Auction.deliveryId")
                 }
@@ -51,6 +54,7 @@ exports.params = function(req, res, next, id) {
             {
                 model: Models.Payment,
                 as: "paymentData",
+                required: false,
                 where: {
                     id: Models.sequelize.col("Auction.paymentId")
                 }

@@ -131,7 +131,7 @@ exports.get = function(req, res, next) {
             if(Date.parse(auctions.rows[i].finishes) <= Date.now()) {
                 auctions.rows[i].finished = true;
             }
-            auctions.rows[i].finished = auctions.rows[i].finished.toString();
+            // auctions.rows[i].finished = auctions.rows[i].finished.toString();
         }
 
         res.json(auctions.rows);

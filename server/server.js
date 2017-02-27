@@ -22,7 +22,8 @@ app.use(function(err, req, res, next) {
   }
   res.status(err.status ? err.status : 500).json({
     message: err.message ? err.message : "Internal server error",
-    stack: config.env === config.dev ? err.stack : "Stack only provided in development environment"
+    stack: err.stack
+      // stack: config.env === config.dev ? err.stack : "Stack only provided in development environment"
   });
 });
 

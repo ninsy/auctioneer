@@ -332,12 +332,18 @@ exports.getBuyerChoices = function(req, res, next) {
         Models.UserChosenDelivery.findAndCountAll(commonParams),
         Models.UserChosenPayment.findAndCountAll(commonParams)
     ]).then(function(values) {
-        res.status(200).json(
-            {
-                buyerChosenDelivery: values[0].rows[0].chosenDelivery,
-                buyerChosenPayment: values[1].rows[0].chosenPayment
-            }
-        )
+
+        if(!values[0].rows[0] || !values[1].rows[0]) {
+            res.status(404).json({message: `Buyer [${req.auction.dataValues.topBid.dataValues.authorId}] has not set either preferred delivery or payment`})
+        } else {
+            res.status(200).json(
+                {
+                    buyerChosenDelivery: values[0].rows[0].chosenDelivery,
+                    buyerChosenPayment: values[1].rows[0].chosenPayment
+                }
+            )
+        }
+
     }).catch(next);
 };
 

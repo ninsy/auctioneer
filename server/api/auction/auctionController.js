@@ -85,7 +85,9 @@ exports.get = function(req, res, next) {
     if(req.query) {
 
         searchObj.where = {
-            finished: false
+            $and: [
+                {id: { $not: true}}
+            ]
         };
         searchObj.include =  [
             {
@@ -100,9 +102,9 @@ exports.get = function(req, res, next) {
         searchObj.order = [[ Models.Bid, 'value', 'DESC']];
 
         if(req.query.nameSearch) {
-            searchObj.where.name = {
+            searchObj.where.$and.push({
                 $like: `%${req.query.nameSearch}%`
-            };
+            });
         }
         if(req.query.categorySearch) {
             searchObj.include.push({

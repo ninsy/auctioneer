@@ -20,10 +20,10 @@
       <file leaf-file-name="auctionController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/api/auction/auctionController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="134" column="9" lean-forward="true" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
+            <state relative-caret-position="924">
+              <caret line="126" column="3" lean-forward="false" selection-start-line="126" selection-start-column="3" selection-end-line="126" selection-end-column="3" />
               <folding>
-                <marker date="1488229211980" expanded="true" signature="5700:5796" ph="..." />
+                <marker date="1488229363697" expanded="true" signature="5746:5842" ph="..." />
               </folding>
             </state>
           </provider>
@@ -811,12 +811,12 @@
       <workItem from="1488060906537" duration="6118000" />
       <workItem from="1488122390786" duration="15778000" />
       <workItem from="1488147635899" duration="1970000" />
-      <workItem from="1488227265789" duration="1391000" />
+      <workItem from="1488227265789" duration="1809000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124879000" />
+    <option name="totallyTimeSpent" value="125297000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -949,7 +949,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server/api/auction/auctionController.js</url>
-          <line>275</line>
+          <line>277</line>
           <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -958,7 +958,7 @@
           <option name="timeStamp" value="111" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="124" />
+      <option name="time" value="127" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
@@ -1307,10 +1307,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/api/auction/auctionController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="134" column="9" lean-forward="true" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
+        <state relative-caret-position="924">
+          <caret line="126" column="3" lean-forward="false" selection-start-line="126" selection-start-column="3" selection-end-line="126" selection-end-column="3" />
           <folding>
-            <marker date="1488229211980" expanded="true" signature="5700:5796" ph="..." />
+            <marker date="1488229363697" expanded="true" signature="5746:5842" ph="..." />
           </folding>
         </state>
       </provider>

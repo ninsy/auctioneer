@@ -85,9 +85,7 @@ exports.get = function(req, res, next) {
     if(req.query) {
 
         searchObj.where = {
-            finished: {
-                $ne: true
-            }
+            finished: false
         };
         searchObj.include =  [
             {

@@ -302,10 +302,10 @@ exports.boughtChoices = function(req, res, next) {
     if(req.auction.Bids[0].authorId !== req.user.id) {
         return res.status(400).json({message: `You have not won auction of id: ${req.auction.id}!`});
     }
-    if(Object.prototype.toString.call(req.body.deliveryOption) !== "[object Array]" && req.body.deliveryOption.length > 1) {
+    if(Object.prototype.toString.call(JSON.parse(req.body.deliveryOption)) !== "[object Array]" && JSON.parse(req.body.deliveryOption).length > 1) {
         return res.status(400).json({message: `You need to provide single delivery option id in form of one-element array, like: [23]`})
     }
-    if(Object.prototype.toString.call(req.body.paymentOption) !== "[object Array]" && req.body.paymentOption.length > 1) {
+    if(Object.prototype.toString.call(JSON.parse(req.body.paymentOption)) !== "[object Array]" && JSON.parse(req.body.paymentOption).length > 1) {
         return res.status(400).json({message: `You need to provide single payment option id in form of one-element array, like: [79]`})
     }
     Promise.all([

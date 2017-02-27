@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3f36f66c-7c09-4f72-b061-4daa59756dae" name="Default" comment="Heroku build">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/api/auction/auctionController.js" afterPath="$PROJECT_DIR$/server/api/auction/auctionController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/api/auction/auctionRoutes.js" afterPath="$PROJECT_DIR$/server/api/auction/auctionRoutes.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,30 +21,40 @@
       <file leaf-file-name="auctionController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/api/auction/auctionController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="311" column="92" lean-forward="true" selection-start-line="311" selection-start-column="92" selection-end-line="311" selection-end-column="92" />
+            <state relative-caret-position="336">
+              <caret line="328" column="9" lean-forward="true" selection-start-line="328" selection-start-column="9" selection-end-line="328" selection-end-column="9" />
               <folding>
-                <marker date="1488234923846" expanded="true" signature="5896:5992" ph="..." />
+                <marker date="1488236761649" expanded="true" signature="5896:5992" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deliveryOptionController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/api/delivery_option/deliveryOptionController.js">
+      <file leaf-file-name="user_chosen_delivery.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/models/user_chosen_delivery.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="18" />
+            <state relative-caret-position="324">
+              <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="delivery_option.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/models/delivery_option.js">
+      <file leaf-file-name="user_chosen_payment.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/models/user_chosen_payment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="24" column="47" lean-forward="false" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+            <state relative-caret-position="396">
+              <caret line="22" column="58" lean-forward="true" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bid.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/models/bid.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1026">
+              <caret line="57" column="9" lean-forward="false" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -72,8 +83,18 @@
       <file leaf-file-name="auctionRoutes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/api/auction/auctionRoutes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="31" />
+            <state relative-caret-position="270">
+              <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -94,26 +115,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="625">
               <caret line="60" column="54" lean-forward="false" selection-start-line="60" selection-start-column="54" selection-end-line="60" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/api/api.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -914,12 +915,12 @@
       <workItem from="1488060906537" duration="6118000" />
       <workItem from="1488122390786" duration="15778000" />
       <workItem from="1488147635899" duration="1970000" />
-      <workItem from="1488227265789" duration="7082000" />
+      <workItem from="1488227265789" duration="8929000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130570000" />
+    <option name="totallyTimeSpent" value="132417000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1057,25 +1058,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server/api/auction/auctionController.js</url>
-          <line>298</line>
+          <line>299</line>
           <properties />
           <option name="timeStamp" value="132" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server/api/auction/auctionController.js</url>
-          <line>11</line>
-          <properties />
-          <option name="timeStamp" value="133" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server/api/auction/auctionController.js</url>
-          <line>68</line>
-          <properties />
-          <option name="timeStamp" value="135" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server/api/auction/auctionController.js</url>
-          <line>310</line>
+          <line>311</line>
           <properties />
           <option name="timeStamp" value="136" />
         </line-breakpoint>
@@ -1087,12 +1076,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server/api/auction/auctionController.js</url>
-          <line>314</line>
+          <line>315</line>
           <properties />
           <option name="timeStamp" value="140" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server/api/auction/auctionController.js</url>
+          <line>322</line>
+          <properties />
+          <option name="timeStamp" value="142" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server/api/auction/auctionController.js</url>
+          <line>334</line>
+          <properties />
+          <option name="timeStamp" value="143" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="141" />
+      <option name="time" value="145" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
@@ -1268,20 +1269,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/user_chosen_delivery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/user_chosen_payment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="58" lean-forward="true" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/api/payment_option/paymentOptionRoutes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1351,14 +1338,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/bid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="57" column="9" lean-forward="false" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/config/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
@@ -1371,14 +1350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1423,14 +1394,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/api/auction/auctionRoutes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="12" lean-forward="true" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/models/auction_category.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1447,12 +1410,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/bid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="57" column="9" lean-forward="false" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/user_chosen_payment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="22" column="58" lean-forward="true" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/auction/auctionRoutes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="18" lean-forward="false" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/user_chosen_delivery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/api/auction/auctionController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="311" column="92" lean-forward="true" selection-start-line="311" selection-start-column="92" selection-end-line="311" selection-end-column="92" />
+        <state relative-caret-position="336">
+          <caret line="328" column="9" lean-forward="true" selection-start-line="328" selection-start-column="9" selection-end-line="328" selection-end-column="9" />
           <folding>
-            <marker date="1488234923846" expanded="true" signature="5896:5992" ph="..." />
+            <marker date="1488236761649" expanded="true" signature="5896:5992" ph="..." />
           </folding>
         </state>
       </provider>

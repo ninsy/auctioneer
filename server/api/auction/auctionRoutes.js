@@ -12,7 +12,9 @@ router.use("/:auctionId/bids", require("../bid/bidRoutes"));
 router.use("/:auctionId/delivery", require("../delivery/deliveryRoutes"));
 router.use("/:auctionId/payment", require("../payment/paymentRoutes"));
 
-router.use("/:id/boughtChoices", checkUser, ctrl.boughtChoices);
+router.get("/:id/boughtChoices", checkUser, ctrl.boughtChoices);
+router.get("/:id/buyerChoices", checkUser, ctrl.getBuyerChoices);
+
 
 router.get("/myBidding", checkUser, ctrl.userBiddingAuctions);
 router.get("/myPosted", checkUser, ctrl.usersAuctions);

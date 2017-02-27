@@ -296,6 +296,7 @@ exports.post = function(req, res, next) {
 
 exports.boughtChoices = function(req, res, next) {
 
+    // TODO: that JSON parse should be hanndled differently
     if(!req.auction.finished) {
         return res.status(400).json({message: `Auction ${req.auction.id} has not yet finished.`});
     }
@@ -314,6 +315,30 @@ exports.boughtChoices = function(req, res, next) {
     ]).then(function(values) {
         res.status(200).json({message: `Auction ${req.auction.id} has been assigned with delivery option id: ${values[0].chosenDeliveries[0].id} and payment option id: ${values[1].chosenPayments[0].id}.`})
     });
+};
+
+// TODO: totally shouldn't be done in such idiotic manner
+exports.getBuyerChoices = function(req, res, next) {
+    // TODO: should make author verification
+    var commonParams = {
+        where: {
+            $and: {
+                auctionId: req.auction.id,
+                authorId: req.auction.dataValues.topBid.dataValues.authorId
+            }
+        }
+    };
+    Promise.all([
+        Models.UserChosenDelivery.findAndCountAll(commonParams),
+        Models.UserChosenPayment.findAndCountAll(commonParams)
+    ]).then(function(values) {
+        res.status(200).json(
+            {
+                buyerChosenDelivery: values[0].rows[0].chosenDelivery,
+                buyerChosenPayment: values[1].rows[0].chosenPayment
+            }
+        )
+    }).catch(next);
 };
 
 exports.delete = function(req, res, next) {

@@ -299,7 +299,7 @@ exports.boughtChoices = function(req, res, next) {
     if(!req.auction.finished) {
         return res.status(400).json({message: `Auction ${req.auction.id} has not yet finished.`});
     }
-    if(!req.auction.Bids[0].authorId !== req.user.id) {
+    if(req.auction.Bids[0].authorId !== req.user.id) {
         return res.status(400).json({message: `You have not won auction of id: ${req.auction.id}!`});
     }
     if(Object.prototype.toString.call(req.body.deliveryOption) !== "[object Array]" && req.body.deliveryOption.length > 1) {

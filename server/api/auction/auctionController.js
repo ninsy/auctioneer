@@ -309,8 +309,8 @@ exports.boughtChoices = function(req, res, next) {
         return res.status(400).json({message: `You need to provide single payment option id in form of one-element array, like: [79]`})
     }
     Promise.all([
-        deliveryOptionCtrl.makeChoice(req.user.id, req.body.deliveryOption, req.auction.id),
-        paymentOptionCtrl.makeChoice(req.user.id, req.body.paymentOption, req.auction.id)
+        deliveryOptionCtrl.makeChoice(req.user.id, JSON.parse(req.body.deliveryOption), req.auction.id),
+        paymentOptionCtrl.makeChoice(req.user.id, JSON.parse(req.body.paymentOption), req.auction.id)
     ]).then(function(values) {
         res.status(200).json({message: `Auction ${req.auction.id} has been assigned with delivery option id: ${values[0].chosenDeliveries} and payment option id: ${values[1].chosenPayments}.`})
     });

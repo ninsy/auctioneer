@@ -20,10 +20,10 @@
       <file leaf-file-name="auctionController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/api/auction/auctionController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="336" column="134" lean-forward="false" selection-start-line="336" selection-start-column="134" selection-end-line="336" selection-end-column="134" />
+            <state relative-caret-position="58">
+              <caret line="333" column="30" lean-forward="false" selection-start-line="333" selection-start-column="30" selection-end-line="333" selection-end-column="30" />
               <folding>
-                <marker date="1488237208064" expanded="true" signature="5896:5992" ph="..." />
+                <marker date="1488237243177" expanded="true" signature="5896:5992" ph="..." />
               </folding>
             </state>
           </provider>
@@ -914,12 +914,12 @@
       <workItem from="1488060906537" duration="6118000" />
       <workItem from="1488122390786" duration="15778000" />
       <workItem from="1488147635899" duration="1970000" />
-      <workItem from="1488227265789" duration="9339000" />
+      <workItem from="1488227265789" duration="9531000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132827000" />
+    <option name="totallyTimeSpent" value="133019000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1445,10 +1445,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/api/auction/auctionController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="336" column="134" lean-forward="false" selection-start-line="336" selection-start-column="134" selection-end-line="336" selection-end-column="134" />
+        <state relative-caret-position="58">
+          <caret line="333" column="30" lean-forward="false" selection-start-line="333" selection-start-column="30" selection-end-line="333" selection-end-column="30" />
           <folding>
-            <marker date="1488237208064" expanded="true" signature="5896:5992" ph="..." />
+            <marker date="1488237243177" expanded="true" signature="5896:5992" ph="..." />
           </folding>
         </state>
       </provider>

@@ -71,8 +71,8 @@ exports.params = function(req, res, next, id) {
                 delete auction.dataValues.Bids;
                 if(Date.parse(auction.finishes) <= Date.now()) {
                     auction.finished = true;
+                    auction.save();
                 }
-                auction.finished = auction.finished.toString();
                 next();
             }
         }).catch(next);
@@ -85,9 +85,11 @@ exports.get = function(req, res, next) {
     if(req.query) {
 
         searchObj.where = {
-            $and: [
-                {finished: { $not: true}}
-            ]
+            $and: {
+                finished: {
+                    $eq: false
+                }
+            }
         };
         searchObj.include =  [
             {
@@ -102,9 +104,9 @@ exports.get = function(req, res, next) {
         searchObj.order = [[ Models.Bid, 'value', 'DESC']];
 
         if(req.query.nameSearch) {
-            searchObj.where.$and.push({
+            searchObj.where.$and.name = {
                 $like: `%${req.query.nameSearch}%`
-            });
+            }
         }
         if(req.query.categorySearch) {
             searchObj.include.push({
@@ -126,16 +128,16 @@ exports.get = function(req, res, next) {
     }
     Models.Auction.findAndCountAll(searchObj).then(function(auctions) {
 
-        for(var i = 0; i < auctions.rows.length; i++) {
+        for(var i = auctions.rows.length-1; i >= 0; i--) {
             auctions.rows[i].dataValues.topBid = auctions.rows[i].Bids[0];
             auctions.rows[i].dataValues.bidCount = auctions.rows[i].Bids.length;
             delete auctions.rows[i].dataValues.Bids;
             if(Date.parse(auctions.rows[i].finishes) <= Date.now()) {
                 auctions.rows[i].finished = true;
+                auctions.rows[i].save();
+                auctions.rows.splice(i,1);
             }
-            // auctions.rows[i].finished = auctions.rows[i].finished.toString();
         }
-
         res.json(auctions.rows);
     }).catch(next);
 };

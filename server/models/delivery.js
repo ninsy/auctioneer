@@ -12,17 +12,18 @@ module.exports = function(sequelize, DataTypes) {
             unique: true
         },
         cost: {
-            type: Sequelize.FLOAT,
+            type: Sequelize.DECIMAL,
             allowNull: false
         },
-        sent: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: false
-        },
-        estimatedDelivery: Sequelize.DATE
+        estimatedDelivery: Sequelize.DATE,
+        chosenUserAddressId: Sequelize.INTEGER,
 }, {
       classMethods: {
-
+          associate: function(models) {
+              Delivery.belongsTo(models.UserAddress, {
+                 foreignKey: 'chosenUserAddressId',
+              });
+          }
       },
       instanceMethods: {
 

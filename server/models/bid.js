@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
           unique: true
       },
       value: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.DECIMAL,
           allowNull: false
       },
       createdAt: {
@@ -27,7 +27,11 @@ module.exports = function(sequelize, DataTypes) {
       auctionId: {
           type:Sequelize.INTEGER,
           allowNull: false
-      }
+      },
+      deleted: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false,
+      },
   }, {
     classMethods: {
       associate: function(models) {

@@ -4,32 +4,30 @@ var Sequelize = require("sequelize");
 var models = require("./db");
 
 module.exports = function(sequelize, DataTypes) {
-    var Payment = sequelize.define("Payment", {
+    var Privilege = sequelize.define("Privilege", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey:true,
             autoIncrement:true,
             unique: true
         },
-        description: {
+        name: {
             type: Sequelize.STRING,
             allowNull: false,
-            validate: {
-                min: 0,
-                max: 255,
-            }
+            unique: true,
         },
-        value: {
-            type: Sequelize.DECIMAL,
-            validate: {
-                len: [0,225],
-            }
-        },
-        status: {
+        state: {
             type: Sequelize.BOOLEAN,
-            defaultValue: false
+            defaultValue: true,
         }
+    },{
+        classMethods: {
+            associate: function(models) {
+
+            },
+
+        },
     });
-    return Payment;
+    return Privilege;
 };
 

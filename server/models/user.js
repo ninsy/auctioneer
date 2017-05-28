@@ -52,38 +52,6 @@ module.exports = function(sequelize, DataTypes) {
                 len: [2,10],
             }
         },
-        street: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                len: [2,30]
-            }
-        },
-        houseNumber: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                len: [1,10]
-            }
-        },
-        city: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                len: [2,30]
-            }
-        },
-        postalCode: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                len: [2,10]
-            }
-        }
     }, {
         hooks: {
             beforeCreate: function(user, options) {

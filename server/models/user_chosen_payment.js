@@ -6,7 +6,7 @@ var models = require("./db");
 module.exports = function(sequelize, DataTypes) {
     var UserChosenPayment = sequelize.define("UserChosenPayment", {
         auctionId: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
         },
         authorId: {
             type: Sequelize.INTEGER

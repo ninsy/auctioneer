@@ -2,30 +2,30 @@
 
 var Sequelize = require("sequelize");
 
-module.exports = function(sequelize, DataTypes) {
-   var AuctionCategory = sequelize.define("AuctionCategory", {});
+module.exports = function (sequelize, DataTypes) {
 
-   return AuctionCategory;
+    var AuctionCategory = sequelize.define("AuctionCategory", {
+        categoryId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
+        auctionId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        }
+    }, {
+        classMethods: {
+            associate: function (models) {
+                AuctionCategory.belongsTo(models.Category, {
+                    foreignKey: "categoryId"
+                });
+                AuctionCategory.belongsTo(models.Auction, {
+                    foreignKey: "auctionId"
+                });
+            },
+        },
+    });
+    return AuctionCategory;
 };
 
-// var AuctionCategory = db.define("AuctionCategory", {
-//   // category_id: {
-//   //   type: Sequelize.INTEGER,
-//   //   references: {
-//   //     model: Category,
-//   //     key: "id"
-//   //   }
-//   // },
-//   // auction_id: {
-//   //   type: Sequelize.INTEGER,
-//   //   references: {
-//   //     model: Auction,
-//   //     key: "id"
-//   //   }
-//   // }
-// });
-//
 
-
-//
-// module.exports = AuctionCategory;

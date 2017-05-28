@@ -12,6 +12,10 @@ module.exports = function(sequelize, DataTypes) {
           autoIncrement:true,
           unique: true
       },
+      buyoutOption: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false,
+      },
       started: {
           type: Sequelize.DATE,
           defaultValue:Sequelize.NOW
@@ -41,13 +45,21 @@ module.exports = function(sequelize, DataTypes) {
               len: [2,300]
           }
       },
+      viewCounter: {
+          type: Sequelize.INTEGER,
+          defaultValue: 0,
+      },
       finished: {
           type:Sequelize.BOOLEAN,
           defaultValue: false
       },
+      deleted: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false,
+      },
       authorId: Sequelize.INTEGER,
       paymentId: Sequelize.INTEGER,
-      deliveryId: Sequelize.INTEGER
+      deliveryId: Sequelize.INTEGER,
   },{
       classMethods: {
         associate: function(models) {
